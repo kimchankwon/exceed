@@ -13,10 +13,11 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-source-contentful",
       options: {
-        accessToken: "R-8Pc1DEyUhrFa5Bz3JWmtBixeoEYAVahWokt2PeTm0",
-        spaceId: "9exkktpmehws",
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
       },
     },
+    "gatsby-plugin-netlify",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
