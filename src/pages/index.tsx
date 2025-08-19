@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { graphql, type PageProps } from "gatsby";
 
 const pageStyles = {
   color: "#232129",
@@ -136,7 +136,8 @@ const links = [
   },
 ];
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage: React.FC<PageProps<Queries.TQuery>> = ({ data }) => {
+  console.log(data.allContentfulTutor.nodes);
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
@@ -192,4 +193,16 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const tutorsQuery = graphql`
+  query T {
+    allContentfulTutor {
+      nodes {
+        id
+        name
+        bio {
+          raw
+        }
+      }
+    }
+  }
+`;
