@@ -1,4 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
+import dotenv from "dotenv";
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -6,6 +8,9 @@ const config: GatsbyConfig = {
     siteUrl: `https://TODO.com`,
   },
   graphqlTypegen: true,
+  flags: {
+    FUNCTIONS: true,
+  },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
@@ -36,9 +41,6 @@ const config: GatsbyConfig = {
       __key: "images",
     },
   ],
-  flags: {
-    GRAPHQL_TYPEGEN: true,
-  },
 };
 
 export default config;
