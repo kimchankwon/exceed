@@ -39,12 +39,14 @@ FIBERY_ENTITY_TYPE=Members
 ## 📝 **How to Create a Member**
 
 ### 1. **Get Your Fibery API Token**
+
 1. Go to [https://testa.fibery.io](https://testa.fibery.io)
 2. Navigate to **Settings** → **Integrations** → **API**
 3. Click **Generate Token**
 4. Copy the token
 
 ### 2. **Set Environment Variables**
+
 ```bash
 # In your .env.development file
 FIBERY_TOKEN=your_actual_token_here
@@ -53,6 +55,7 @@ FIBERY_ENTITY_TYPE=Members
 ```
 
 ### 3. **Test the Form**
+
 1. Start development: `npm run develop`
 2. Go to http://localhost:8000
 3. Fill out the form with Name and Email
@@ -94,6 +97,7 @@ body: JSON.stringify({
 **Important**: Fibery field names are case-sensitive and must match exactly what's in your database schema.
 
 Common field mappings:
+
 - `Name` → Member's name
 - `Email` → Member's email
 - `Status` → Member status
@@ -103,11 +107,13 @@ Common field mappings:
 ## 🧪 **Testing the API**
 
 ### **Using the Form**
+
 1. Fill out the form on your homepage
 2. Submit and check browser console
 3. Verify member appears in your Fibery Members database
 
 ### **Using cURL**
+
 ```bash
 curl -X POST http://localhost:8000/api/create-member \
   -H "Content-Type: application/json" \
@@ -115,10 +121,12 @@ curl -X POST http://localhost:8000/api/create-member \
 ```
 
 ### **Using Postman**
+
 - **URL**: `http://localhost:8000/api/create-member`
 - **Method**: `POST`
 - **Headers**: `Content-Type: application/json`
-- **Body**: 
+- **Body**:
+
 ```json
 {
   "name": "John Doe",
@@ -131,10 +139,12 @@ curl -X POST http://localhost:8000/api/create-member \
 ### **Common Issues**
 
 1. **"Fibery configuration missing"**
+
    - Check your `.env.development` file exists
    - Verify `FIBERY_TOKEN` is set correctly
 
 2. **"Failed to create member in Fibery"**
+
    - Verify your API token has write permissions
    - Check that `FIBERY_ENTITY_TYPE=Members` matches exactly
    - Ensure required fields exist in your Members entity
@@ -148,8 +158,8 @@ curl -X POST http://localhost:8000/api/create-member \
 Add logging to see what's happening:
 
 ```typescript
-console.log('Creating member:', { name, email });
-console.log('Fibery response:', fiberyData);
+console.log("Creating member:", { name, email });
+console.log("Fibery response:", fiberyData);
 ```
 
 ## 🔒 **Security Notes**

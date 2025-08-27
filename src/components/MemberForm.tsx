@@ -1,167 +1,187 @@
-import React, { useState } from 'react';
-
-interface MemberFormData {
-  name: string;
-  email: string;
-}
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { memberFormSchema, type MemberFormData } from "../utils/schemas";
 
 interface MemberFormProps {
   onSubmit?: (data: MemberFormData) => void;
 }
 
 const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<MemberFormData>({
-    name: '',
-    email: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const validateForm = (): boolean => {
-    if (!formData.name.trim()) {
-      setError('Name is required');
-      return false;
-    }
-    if (!formData.email.trim()) {
-      setError('Email is required');
-      return false;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setError('Please enter a valid email address');
-      return false;
-    }
-    setError(null);
-    return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
+  const handleSubmit = async (
+    values: MemberFormData,
+    { setSubmitting, resetForm }: any
+  ) => {
     setIsSubmitting(true);
     setError(null);
 
     try {
       // Create member in Fibery Members database
-      const response = await fetch('/api/create-member', {
-        method: 'POST',
+      const response = await fetch("/api/create-member", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(values),
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        );
       }
 
       const result = await response.json();
       setSuccess(true);
-      
+
       // Reset form
-      setFormData({ name: '', email: '' });
-      
+      resetForm();
+
       // Call parent onSubmit if provided
       if (onSubmit) {
-        onSubmit(formData);
+        onSubmit(values);
       }
-      
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred while creating the member');
+      setError(
+        err instanceof Error
+          ? err.message
+          : "An error occurred while creating the member"
+      );
     } finally {
       setIsSubmitting(false);
+      setSubmitting(false);
     }
   };
 
   const resetForm = () => {
-    setFormData({ name: '', email: '' });
     setError(null);
     setSuccess(false);
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-        Create New Member
-      </h2>
-      
-      {success && (
-        <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-          Member created successfully!
-        </div>
-      )}
-      
-      {error && (
-        <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-          {error}
-        </div>
-      )}
+    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+      <div className="card-body">
+        <h2 className="card-title text-2xl font-bold text-center mb-6">
+          Create New Member
+        </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter member's full name"
-            disabled={isSubmitting}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Enter member's email address"
-            disabled={isSubmitting}
-          />
-        </div>
-
-        <div className="flex space-x-3 pt-4">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            {isSubmitting ? 'Creating...' : 'Create Member'}
-          </button>
-          
-          {success && (
-            <button
-              type="button"
-              onClick={resetForm}
-              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        {success && (
+          <div className="alert alert-success mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
             >
-              New Member
-            </button>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>Member created successfully!</span>
+          </div>
+        )}
+
+        {error && (
+          <div className="alert alert-error mb-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{error}</span>
+          </div>
+        )}
+
+        <Formik
+          initialValues={{ name: "", email: "" }}
+          validationSchema={memberFormSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ isValid, dirty }) => (
+            <Form className="space-y-4">
+              <div className="form-control">
+                <label htmlFor="name" className="label">
+                  <span className="label-text">Name *</span>
+                </label>
+                <Field
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="input input-bordered w-full"
+                  placeholder="Enter member's full name"
+                  disabled={isSubmitting}
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-error text-sm mt-1"
+                />
+              </div>
+
+              <div className="form-control">
+                <label htmlFor="email" className="label">
+                  <span className="label-text">Email *</span>
+                </label>
+                <Field
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="input input-bordered w-full"
+                  placeholder="Enter member's email address"
+                  disabled={isSubmitting}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-error text-sm mt-1"
+                />
+              </div>
+
+              <div className="card-actions justify-end pt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !isValid || !dirty}
+                  className="btn btn-primary flex-1"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="loading loading-spinner loading-sm"></span>
+                      Creating...
+                    </>
+                  ) : (
+                    "Create Member"
+                  )}
+                </button>
+
+                {success && (
+                  <button
+                    type="button"
+                    onClick={resetForm}
+                    className="btn btn-outline"
+                  >
+                    New Member
+                  </button>
+                )}
+              </div>
+            </Form>
           )}
-        </div>
-      </form>
+        </Formik>
+      </div>
     </div>
   );
 };

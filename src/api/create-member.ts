@@ -1,107 +1,94 @@
-import type { GatsbyFunctionRequest, GatsbyFunctionResponse } from 'gatsby';
+import type { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
+import * as yup from "yup";
+import {
+  createMemberRequestSchema,
+  type CreateMemberRequest,
+  type ErrorResponse,
+} from "../utils/schemas";
 
-interface CreateMemberRequest {
-  name: string;
-  email: string;
-}
-
-interface CreateMemberResponse {
-  message: string;
-  fiberyId?: string;
-  member: {
-    name: string;
-    email: string;
-  };
-}
-
-interface ErrorResponse {
-  error: string;
-  details?: string;
-  message?: string;
-}
-
-interface FiberyEntityResponse {
-  id: string;
-  [key: string]: any;
-}
-
-export default async function API(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
+export default async function API(
+  req: GatsbyFunctionRequest,
+  res: GatsbyFunctionResponse
+) {
   // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    const errorResponse: ErrorResponse = {
+      error: "Method not allowed",
+      details: "Only POST requests are supported",
+    };
+    return res.status(405).json(errorResponse);
   }
 
   try {
-    // Parse the request body
-    const { name, email }: CreateMemberRequest = req.body;
+    // Parse and validate the request body using Yup
+    const validationResult = await createMemberRequestSchema.validate(
+      req.body,
+      {
+        abortEarly: false,
+      }
+    );
 
-    // Validate required fields
-    if (!name || !email) {
-      return res.status(400).json({ error: 'Name and email are required' });
-    }
+    const { name, email }: CreateMemberRequest = validationResult;
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ error: 'Invalid email format' });
-    }
-
-    // Fibery API configuration for your Members database
-    const FIBERY_TOKEN = process.env.FIBERY_TOKEN;
-    const FIBERY_WORKSPACE = process.env.FIBERY_WORKSPACE || 'testa'; // Your workspace name
-
-    if (!FIBERY_TOKEN) {
-      return res.status(500).json({ error: 'Fibery configuration missing' });
-    }
     // Make a fetch call to Fibery's /api/commands endpoint to create a new entity
-    const fiberyResponse = await fetch(`https://${FIBERY_WORKSPACE}.fibery.io/api/commands`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Token ${FIBERY_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify([
-        {
-          command: "fibery.entity/create",
-          args: {
-            type: "Space/Members",
-            entity: {
-              "Space/Name": name,
-              "Space/Email": email
-            }
-          }
-        }
-      ])
-    });
+    const fiberyResponse = await fetch(
+      `https://${process.env.FIBERY_WORKSPACE}.fibery.io/api/commands`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${process.env.FIBERY_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify([
+          {
+            command: "fibery.entity/create",
+            args: {
+              type: "Space/Members",
+              entity: {
+                "Space/Name": name,
+                "Space/Email": email,
+              },
+            },
+          },
+        ]),
+      }
+    );
 
     if (!fiberyResponse.ok) {
       const errorData = await fiberyResponse.text();
-      console.error('Fibery API error:', errorData);
-      
-      return res.status(fiberyResponse.status).json({ 
-        error: 'Failed to create member in Fibery',
-        details: errorData
-      });
+      console.error("Fibery API error:", errorData);
+
+      const errorResponse: ErrorResponse = {
+        error: "Failed to create member in Fibery",
+        details: errorData,
+      };
+      return res.status(fiberyResponse.status).json(errorResponse);
     }
 
-    const fiberyData: FiberyEntityResponse = await fiberyResponse.json();
-
-    const successResponse: CreateMemberResponse = {
-      message: 'Member created successfully',
-      fiberyId: fiberyData.id,
-      member: { name, email }
+    const successResponse = {
+      message: "Member created successfully",
+      member: { name, email },
     };
 
     return res.status(200).json(successResponse);
-
   } catch (error) {
-    console.error('Error creating member:', error);
-    
+    console.error("Error creating member:", error);
+
+    // Handle Yup validation errors
+    if (error instanceof yup.ValidationError) {
+      const errorResponse: ErrorResponse = {
+        error: "Validation failed",
+        details: error.errors.join(", "),
+      };
+      return res.status(400).json(errorResponse);
+    }
+
     const errorResponse: ErrorResponse = {
-      error: 'Internal server error',
-      message: error instanceof Error ? error.message : 'Unknown error occurred'
+      error: "Internal server error",
+      message:
+        error instanceof Error ? error.message : "Unknown error occurred",
     };
-    
+
     return res.status(500).json(errorResponse);
   }
 }

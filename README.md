@@ -57,8 +57,10 @@ This is a Gatsby project that includes a user creation form that integrates with
 - **User Creation Form**: A React component with Name and Email fields
 - **Fibery API Integration**: Serverless function to create users in your Fibery workspace
 - **Form Validation**: Client-side validation for required fields and email format
-- **Modern UI**: Built with Tailwind CSS for a clean, responsive design
+- **Modern UI**: Built with Tailwind CSS and daisyUI for a clean, responsive design
 - **TypeScript**: Full TypeScript support for type safety
+- **Zod Validation**: Runtime type validation for both client and server
+- **Formik Integration**: Professional form management with validation
 
 ## Getting Started
 
@@ -72,18 +74,48 @@ This is a Gatsby project that includes a user creation form that integrates with
 
 1. Clone the repository
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
-3. Set up your Fibery API credentials (see [FIBERY_SETUP.md](./FIBERY_SETUP.md))
+3. Set up environment variables (see Environment Variables section below)
 
 4. Start the development server:
+
    ```bash
    npm run develop
    ```
 
 5. Open [http://localhost:8000](http://localhost:8000) in your browser
+
+## Environment Variables
+
+This project requires several environment variables to function properly. Copy the `env.template` file to create your environment files:
+
+### Development
+
+```bash
+cp env.template .env.development
+```
+
+### Production
+
+```bash
+cp env.template .env.production
+```
+
+### Required Variables
+
+| Variable                  | Description                          | Example       |
+| ------------------------- | ------------------------------------ | ------------- |
+| `NODE_ENV`                | Environment (development/production) | `development` |
+| `CONTENTFUL_ACCESS_TOKEN` | Contentful API access token          | `CFPAT-...`   |
+| `CONTENTFUL_SPACE_ID`     | Contentful space ID                  | `abc123def`   |
+| `FIBERY_TOKEN`            | Fibery API token                     | `token123...` |
+| `FIBERY_WORKSPACE`        | Your Fibery workspace name           | `myworkspace` |
+
+**Important**: Never commit your actual environment files (`.env.development`, `.env.production`) to version control. They contain sensitive information.
 
 ## User Creation Form
 
@@ -93,58 +125,23 @@ The form is located on the homepage and includes:
 - **Email field**: Required email input with format validation
 - **Submit button**: Creates the user in Fibery
 - **Success/Error handling**: Clear feedback for form submission results
+- **Real-time validation**: Instant feedback using Zod schemas
 
 ## API Integration
 
-### Serverless Function Approach (Recommended)
+The project includes serverless functions for:
 
-The form submits to `/api/create-member` which is handled by a Gatsby Function. This approach:
+- **`/api/create-member`**: Creates new members in your Fibery workspace
+- **`/api/hello-world`**: Example API endpoint for testing
 
-- Keeps your Fibery API token secure on the server
-- Handles CORS automatically
-- Provides better error handling and logging
+## Technology Stack
 
-### Direct API Approach (Alternative)
-
-For development or testing, you can also use the `FiberyApi` utility class directly from the frontend. See `src/utils/fiberyApi.ts` for implementation details.
-
-## Project Structure
-
-```
-src/
-├── components/
-│   └── UserForm.tsx          # User creation form component
-├── pages/
-│   └── index.tsx             # Homepage with the form
-├── api/
-│   ├── create-member.ts      # TypeScript API function for Fibery integration
-│   └── hello-world.ts        # TypeScript test API function
-├── utils/
-│   └── fiberyApi.ts          # Fibery API utility class
-└── styles/
-    └── global.css            # Global styles including Tailwind
-```
-
-## Configuration
-
-### Environment Variables
-
-Create a `.env` file in your project root:
-
-```bash
-FIBERY_TOKEN=your_fibery_api_token_here
-FIBERY_WORKSPACE=your_workspace_name_here
-FIBERY_ENTITY_TYPE=Users
-```
-
-### Fibery Setup
-
-See [FIBERY_SETUP.md](./FIBERY_SETUP.md) for detailed instructions on:
-
-- Getting your API token
-- Finding your entity type name
-- Troubleshooting common issues
-- Security considerations
+- **Frontend**: React 18, Gatsby 5, TypeScript
+- **Styling**: Tailwind CSS 4, daisyUI
+- **Forms**: Formik with Zod validation
+- **API**: Gatsby Functions with Zod runtime validation
+- **CMS**: Contentful integration
+- **External Services**: Fibery API integration
 
 ## Development
 
@@ -156,31 +153,22 @@ See [FIBERY_SETUP.md](./FIBERY_SETUP.md) for detailed instructions on:
 - `npm run clean` - Clean Gatsby cache
 - `npm run typecheck` - Run TypeScript type checking
 
-### Adding New Fields
+### Code Quality
 
-To add more fields to the user form:
+- **Type Safety**: Full TypeScript implementation with strict mode
+- **Validation**: Zod schemas for runtime type safety
+- **Error Handling**: Standardized error response formats
+- **Component Architecture**: Modern React patterns with hooks
 
-1. Update the `UserFormData` interface in `UserForm.tsx`
-2. Add the new input field to the form JSX
-3. Update the validation logic
-4. Modify the API payload in `create-member.ts`
+## Troubleshooting
 
-## Deployment
+### Common Issues
 
-This project is configured for Netlify deployment with:
+1. **Environment Variables Not Loading**: Ensure your `.env.development` file exists and contains all required variables
+2. **Fibery API Errors**: Verify your Fibery token and workspace name are correct
+3. **Build Errors**: Run `npm run clean` to clear Gatsby cache
 
-- `gatsby-plugin-netlify` for automatic function deployment
-- Environment variables configured in Netlify dashboard
-- Automatic builds on Git push
+### Getting Help
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is private and proprietary.
+- Check the [FIBERY_SETUP.md](./FIBERY_SETUP.md) for detailed Fibery configuration
+- Review the [GATSBY_FUNCTIONS_GUIDE.md](./GATSBY_FUNCTIONS_GUIDE.md) for API development

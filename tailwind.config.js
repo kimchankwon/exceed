@@ -3,9 +3,14 @@ module.exports = {
   content: [
     `./src/pages/**/*.{js,jsx,ts,tsx}`,
     `./src/components/**/*.{js,jsx,ts,tsx}`,
+    `./src/api/**/*.{js,jsx,ts,tsx}`,
+    `./src/utils/**/*.{js,jsx,ts,tsx}`,
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
-}
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
+};

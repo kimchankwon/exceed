@@ -1,6 +1,7 @@
 # Fibery API Setup Guide
 
 ## Prerequisites
+
 1. A Fibery workspace account
 2. Admin access to your Fibery workspace
 3. API token with write permissions
@@ -26,6 +27,7 @@ FIBERY_ENTITY_TYPE=Members
 ```
 
 ### Variable Descriptions:
+
 - `FIBERY_TOKEN`: Your Fibery API token
 - `FIBERY_WORKSPACE`: Your workspace name (found in the URL: `https://your-workspace.fibery.io`)
 - `FIBERY_ENTITY_TYPE`: The entity type name for users (default: "Users")
@@ -49,10 +51,12 @@ FIBERY_ENTITY_TYPE=Members
 ### Common Issues:
 
 1. **"Fibery configuration missing" error**
+
    - Check that your `.env` file exists and has the correct variables
    - Ensure the environment variables are loaded in your deployment environment
 
 2. **"Failed to create user in Fibery" error**
+
    - Verify your API token has write permissions
    - Check that the entity type name matches exactly
    - Ensure the required fields (Name, Email) exist in your Fibery entity type
