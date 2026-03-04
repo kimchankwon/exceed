@@ -1,0 +1,8 @@
+[build]
+  command = "gatsby build"
+  publish = "public"
+
+[build.environment]
+  # CONTENTFUL_SPACE_ID appears in public Contentful CDN URLs (images.ctfassets.net/{spaceId}/...)
+  # and is expected in build output. The actual secret is CONTENTFUL_ACCESS_TOKEN.
+  SECRETS_SCAN_OMIT_KEYS = "CONTENTFUL_SPACE_ID"
