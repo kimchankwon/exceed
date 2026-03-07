@@ -1,3 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: true;
+  --color-base-100: #ffffff;
+  --color-base-200: #e95a00;
+  --color-base-300: #051524;
+  --color-primary: #e95a00;
+  --color-primary-content: #ffffff;
+}
