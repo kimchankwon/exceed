@@ -11,6 +11,10 @@ Description: A tutoring company for high school students in NSW Australia.
 
 This project is a website to showcase this company. It is a Gatsby 5 static site with React 19, TypeScript, and serverless functions. Uses Contentful as a headless CMS and Fibery as a member database backend. Deployed on Netlify.
 
+## Development Server
+
+When verifying UI changes, check if `npm run develop` is already running on port 8000 before starting a new instance. If the dev server is already running, skip starting it and just verify in the browser at `http://localhost:8000`.
+
 ## Commands
 
 ```bash

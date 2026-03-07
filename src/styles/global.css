@@ -9,4 +9,15 @@
   --color-base-300: #051524;
   --color-primary: #e95a00;
   --color-primary-content: #ffffff;
+  --color-secondary: rgb(225 226 227);
+  --color-secondary-content: #000000;
+}
+
+.btn {
+  --btn-border: var(--btn-bg);
+  --btn-shadow: none;
+}
+
+.btn-sm {
+  --fontsize: 11px;
 }

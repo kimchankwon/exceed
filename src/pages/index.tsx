@@ -4,29 +4,30 @@ import MemberForm from "../components/MemberForm";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data }) => {
-  const landingPage1 = data.landingPage1;
-  const landingPage2 = data.landingPage2;
-  const landingPage3 = data.landingPage3;
-  const landingPage4 = data.landingPage4;
+  const {
+    landingPage1,
+    landingPage2,
+    landingPage3,
+    landingPage4,
+    landingPage5,
+    landingPage6,
+    allContentfulFrequentlyAskedQuestions,
+  } = data;
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-center gap-10 pt-10 pb-28">
+      <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage1?.description?.description}
         </h1>
-        <button type="submit" className="btn btn-primary btn-sm rounded-full font-light">
-          CONTACT US
-        </button>
+        <button className="btn btn-primary btn-sm rounded-full font-light">CONTACT US</button>
       </div>
-      <div className="bg-base-200 grid grid-cols-1 px-6 pt-12 sm:grid-cols-2">
+      <div className="bg-base-200 grid grid-cols-1 px-8 pt-12 sm:grid-cols-2">
         <div className="flex flex-col items-start">
           <p className="w-full max-w-sm text-sm text-white">
             {landingPage2?.description?.description}
           </p>
-          <p className="w-full max-w-sm text-sm text-white">
-            {landingPage2?.description2?.description2}
-          </p>
+          <p className="w-full max-w-sm text-white">{landingPage2?.description2?.description2}</p>
         </div>
         {landingPage2?.photo?.gatsbyImageData && (
           <GatsbyImage
@@ -36,28 +37,73 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           />
         )}
       </div>
-      <div className="bg-base-200 grid grid-cols-1 items-end px-6 py-12 sm:grid-cols-2">
+      <div className="bg-base-200 grid grid-cols-1 items-end px-8 py-12 sm:grid-cols-2">
         {landingPage3?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={landingPage3.photo.gatsbyImageData}
             alt={landingPage3.title || "Landing Page Image"}
-            className="max-w-lg"
+            className="max-w-lg justify-self-end"
           />
         )}
         <div className="flex flex-col items-start p-6">
           <p className="w-full max-w-sm text-sm text-white">
             {landingPage3?.description?.description}
           </p>
-          <p className="w-full max-w-sm text-sm text-white">
-            {landingPage3?.description2?.description2}
-          </p>
+          <p className="w-full max-w-sm text-white">{landingPage3?.description2?.description2}</p>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center gap-5 pt-10 pb-28">
+      <div className="flex flex-col items-center justify-center gap-5 px-8 py-28">
         <h1 className="max-w-xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage4?.description?.description}
         </h1>
-        <p className="max-w-sm text-center text-sm">{landingPage4?.description2?.description2}</p>
+        <p className="max-w-sm text-center text-xs">{landingPage4?.description2?.description2}</p>
+      </div>
+      <div className="flex flex-col px-8 py-28">
+        <p className="max-w-xl pb-12 text-3xl">{landingPage5?.description?.description}</p>
+        {landingPage5?.photo?.gatsbyImageData && (
+          <GatsbyImage
+            image={landingPage5.photo.gatsbyImageData}
+            alt={landingPage5.title || "Landing Page Image"}
+            className="w-68"
+          />
+        )}
+      </div>
+      <div className="flex justify-center px-8 pb-24">
+        <button className="btn btn-secondary btn-sm rounded-full font-medium">MEET OUR TEAM</button>
+      </div>
+      {/* Testimonials Section */}
+      {/* TODO */}
+      <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
+        <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
+          {landingPage6?.description?.description}
+        </h1>
+        <div className="flex gap-4">
+          <button className="btn btn-sm rounded-full border-2 border-black bg-white px-5">
+            ABOUT US
+          </button>
+          <button className="btn btn-primary btn-sm rounded-full font-light">ENQUIRE NOW</button>
+        </div>
+      </div>
+      {/* Carousel thing */}
+      {/* TODO */}
+      {/* FAQ Section */}
+      <div className="flex flex-col px-8 pb-12">
+        <h1 className="max-w-60 text-2xl leading-6 font-extrabold">FREQUENTLY</h1>
+        <h1 className="max-w-60 text-2xl leading-6 font-extrabold">ASKED QUESTIONS</h1>
+      </div>
+      <div className="flex flex-col items-end px-8 pb-12">
+        {allContentfulFrequentlyAskedQuestions.nodes.map((faq, index) => (
+          <div key={faq.id} className="w-full max-w-md">
+            <div className="collapse-arrow collapse">
+              <input type="checkbox" />
+              <div className="collapse-title text-md py-3 pl-0">{faq.title}</div>
+              <div className="collapse-content px-0 text-sm">{faq.description?.description}</div>
+            </div>
+            {index < allContentfulFrequentlyAskedQuestions.nodes.length - 1 && (
+              <div className="h-px bg-gray-300" />
+            )}
+          </div>
+        ))}
       </div>
       {/* Member Form Section */}
       <section className="bg-base-100">
@@ -84,17 +130,13 @@ export default IndexPage;
 
 export const landingPageQuery = graphql`
   query LandingPageQuery {
-    landingPage1: contentfulContentCard(contentful_id: { eq: "4QyBkGkABsUBblJqxOZCov" }) {
-      id
-      contentful_id
+    landingPage1: contentfulContentCard(title: { eq: "Landing Page 1" }) {
       title
       description {
         description
       }
     }
-    landingPage2: contentfulContentCard(contentful_id: { eq: "1aPmoW0SJRJj06E75eJw3O" }) {
-      id
-      contentful_id
+    landingPage2: contentfulContentCard(title: { eq: "Landing Page 2" }) {
       title
       description {
         description
@@ -106,9 +148,7 @@ export const landingPageQuery = graphql`
         gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
       }
     }
-    landingPage3: contentfulContentCard(contentful_id: { eq: "44mPl4HoInMshIdiIbsVLq" }) {
-      id
-      contentful_id
+    landingPage3: contentfulContentCard(title: { eq: "Landing Page 3" }) {
       title
       description {
         description
@@ -120,15 +160,41 @@ export const landingPageQuery = graphql`
         gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
       }
     }
-    landingPage4: contentfulContentCard(contentful_id: { eq: "2mqQqYSHMxg1ZSSiwY4x1V" }) {
-      id
-      contentful_id
+    landingPage4: contentfulContentCard(title: { eq: "Landing Page 4" }) {
       title
       description {
         description
       }
       description2 {
         description2
+      }
+    }
+    landingPage5: contentfulContentCard(title: { eq: "Landing Page 5" }) {
+      title
+      description {
+        description
+      }
+      description2 {
+        description2
+      }
+      photo {
+        gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
+      }
+    }
+    landingPage6: contentfulContentCard(title: { eq: "Landing Page 6" }) {
+      title
+      description {
+        description
+      }
+    }
+    allContentfulFrequentlyAskedQuestions(sort: [{ order: ASC }]) {
+      nodes {
+        id
+        title
+        order
+        description {
+          description
+        }
       }
     }
   }
