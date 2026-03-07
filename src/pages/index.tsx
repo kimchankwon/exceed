@@ -1,7 +1,6 @@
 import { graphql, type PageProps } from "gatsby";
 import * as React from "react";
 import MemberForm from "../components/MemberForm";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({
@@ -10,11 +9,12 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({
   const landingPage1 = data.landingPage1;
   const landingPage2 = data.landingPage2;
   const landingPage3 = data.landingPage3;
+  const landingPage4 = data.landingPage4;
 
   return (
     <div>
-      <div className="flex flex-col gap-10 items-center justify-center pt-10 pb-20">
-        <h1 className="text-4xl font-extrabold text-center w-xl">
+      <div className="flex flex-col gap-10 items-center justify-center pt-10 pb-28">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-center max-w-3xl">
           {landingPage1?.description?.description}
         </h1>
         <button
@@ -24,33 +24,48 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({
           CONTACT US
         </button>
       </div>
-      <div className="flex bg-base-200 py-10 px-6 justify-between">
-        <p className="w-xs text-sm text-white">
-          {landingPage2?.richDescription &&
-            renderRichText(landingPage2.richDescription)}
-        </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 bg-base-200 py-10 px-6">
+        <div className="flex flex-col items-start p-6">
+          <p className="w-full text-sm text-white max-w-sm">
+            {landingPage2?.description?.description}
+          </p>
+          <p className="w-full text-sm text-white max-w-sm">
+            {landingPage2?.description2?.description2}
+          </p>
+        </div>
         {landingPage2?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={landingPage2.photo.gatsbyImageData}
             alt={landingPage2.title || "Landing Page Image"}
-            className="w-60"
+            className="w-72 justify-self-end"
           />
         )}
       </div>
-      <div className="flex bg-base-200 py-10 px-6 justify-between">
+      <div className="grid grid-cols-1 sm:grid-cols-2 bg-base-200 py-10 px-6 items-end">
         {landingPage3?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={landingPage3.photo.gatsbyImageData}
             alt={landingPage3.title || "Landing Page Image"}
-            className="w-60"
+            className="w-full"
           />
         )}
-        <p className="w-xs text-sm text-white">
-          {landingPage3?.richDescription &&
-            renderRichText(landingPage3.richDescription)}
+        <div className="flex flex-col items-start p-6">
+          <p className="w-full text-sm text-white max-w-sm">
+            {landingPage3?.description?.description}
+          </p>
+          <p className="w-full text-sm text-white max-w-sm">
+            {landingPage3?.description2?.description2}
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-col gap-5 items-center justify-center pt-10 pb-28">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-center max-w-xl">
+          {landingPage4?.description?.description}
+        </h1>
+        <p className="text-sm max-w-sm text-center">
+          {landingPage4?.description2?.description2}
         </p>
       </div>
-
       {/* Member Form Section */}
       <section className="bg-base-100">
         <div className="container mx-auto px-4">
@@ -87,12 +102,6 @@ export const landingPageQuery = graphql`
       description {
         description
       }
-      richDescription {
-        raw
-      }
-      photo {
-        gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
-      }
     }
     landingPage2: contentfulContentCard(
       contentful_id: { eq: "1aPmoW0SJRJj06E75eJw3O" }
@@ -103,8 +112,8 @@ export const landingPageQuery = graphql`
       description {
         description
       }
-      richDescription {
-        raw
+      description2 {
+        description2
       }
       photo {
         gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
@@ -119,11 +128,24 @@ export const landingPageQuery = graphql`
       description {
         description
       }
-      richDescription {
-        raw
+      description2 {
+        description2
       }
       photo {
         gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
+      }
+    }
+    landingPage4: contentfulContentCard(
+      contentful_id: { eq: "2mqQqYSHMxg1ZSSiwY4x1V" }
+    ) {
+      id
+      contentful_id
+      title
+      description {
+        description
+      }
+      description2 {
+        description2
       }
     }
   }
