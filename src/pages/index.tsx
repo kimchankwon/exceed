@@ -24,8 +24,8 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({
           CONTACT US
         </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 bg-base-200 py-10 px-6">
-        <div className="flex flex-col items-start p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 bg-base-200 pt-12 px-6">
+        <div className="flex flex-col items-start">
           <p className="w-full text-sm text-white max-w-sm">
             {landingPage2?.description?.description}
           </p>
@@ -41,12 +41,12 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({
           />
         )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 bg-base-200 py-10 px-6 items-end">
+      <div className="grid grid-cols-1 sm:grid-cols-2 bg-base-200 py-12 px-6 items-end">
         {landingPage3?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={landingPage3.photo.gatsbyImageData}
             alt={landingPage3.title || "Landing Page Image"}
-            className="w-full"
+            className="max-w-lg"
           />
         )}
         <div className="flex flex-col items-start p-6">
