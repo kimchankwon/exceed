@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
 
 const Header: React.FC = () => {
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="navbar bg-base-100 shadow-lg fixed top-0 left-0 right-0 w-full z-50 min-w-full">
+    <header className="navbar bg-base-100 fixed top-0 right-0 left-0 z-50 w-full min-w-full shadow-lg">
       <div className="navbar-start flex-1">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
-              className="w-5 h-5"
+              className="h-5 w-5"
               width="24"
               height="24"
               fill="none"
@@ -31,22 +30,16 @@ const Header: React.FC = () => {
             </svg>
           </div>
           <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            tabIndex={-1}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link
-                to="/about-us"
-                className={isActive("/about-us") ? "active" : ""}
-              >
+              <Link to="/about-us" className={isActive("/about-us") ? "active" : ""}>
                 About Us
               </Link>
             </li>
             <li>
-              <Link
-                to="/timetable"
-                className={isActive("/timetable") ? "active" : ""}
-              >
+              <Link to="/timetable" className={isActive("/timetable") ? "active" : ""}>
                 Timetable
               </Link>
             </li>
@@ -83,36 +76,30 @@ const Header: React.FC = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
-            <span className="text-primary-content font-bold text-lg">X</span>
+        <Link to="/" className="btn btn-ghost flex items-center gap-2 text-xl">
+          <div className="bg-primary flex h-8 w-8 items-center justify-center rounded">
+            <span className="text-primary-content text-lg font-bold">X</span>
           </div>
           Exceed Education
         </Link>
       </div>
 
-      <div className="navbar-center hidden lg:flex flex-1 justify-center">
+      <div className="navbar-center hidden flex-1 justify-center lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link
-              to="/about-us"
-              className={isActive("/about-us") ? "active" : ""}
-            >
+            <Link to="/about-us" className={isActive("/about-us") ? "active" : ""}>
               About Us
             </Link>
           </li>
           <li>
-            <Link
-              to="/timetable"
-              className={isActive("/timetable") ? "active" : ""}
-            >
+            <Link to="/timetable" className={isActive("/timetable") ? "active" : ""}>
               Timetable
             </Link>
           </li>
           <li>
             <details>
               <summary>Services</summary>
-              <ul className="p-2 w-52">
+              <ul className="w-52 p-2">
                 <li>
                   <Link to="/services/maths">Maths</Link>
                 </li>

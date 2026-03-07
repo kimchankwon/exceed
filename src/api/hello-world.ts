@@ -1,10 +1,7 @@
 import type { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby";
 import { type ErrorResponse } from "../utils/schemas";
 
-export default function API(
-  req: GatsbyFunctionRequest,
-  res: GatsbyFunctionResponse
-) {
+export default function API(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   // Handle different HTTP methods
   if (req.method === "GET") {
     return res.json({

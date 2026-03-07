@@ -6,10 +6,7 @@ import {
   type ErrorResponse,
 } from "../utils/schemas";
 
-export default async function API(
-  req: GatsbyFunctionRequest,
-  res: GatsbyFunctionResponse
-) {
+export default async function API(req: GatsbyFunctionRequest, res: GatsbyFunctionResponse) {
   // Only allow POST requests
   if (req.method !== "POST") {
     const errorResponse: ErrorResponse = {
@@ -21,12 +18,9 @@ export default async function API(
 
   try {
     // Parse and validate the request body using Yup
-    const validationResult = await createMemberRequestSchema.validate(
-      req.body,
-      {
-        abortEarly: false,
-      }
-    );
+    const validationResult = await createMemberRequestSchema.validate(req.body, {
+      abortEarly: false,
+    });
 
     const { name, email }: CreateMemberRequest = validationResult;
 
@@ -85,8 +79,7 @@ export default async function API(
 
     const errorResponse: ErrorResponse = {
       error: "Internal server error",
-      message:
-        error instanceof Error ? error.message : "Unknown error occurred",
+      message: error instanceof Error ? error.message : "Unknown error occurred",
     };
 
     return res.status(500).json(errorResponse);

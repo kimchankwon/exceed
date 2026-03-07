@@ -4,23 +4,30 @@ import Header from "../components/Header";
 
 const TimetablePage: React.FC<PageProps> = () => {
   const timeSlots = [
-    "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", 
-    "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"
+    "9:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "1:00 PM",
+    "2:00 PM",
+    "3:00 PM",
+    "4:00 PM",
+    "5:00 PM",
   ];
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   return (
-    <div className="min-h-screen bg-base-100">
+    <div className="bg-base-100 min-h-screen">
       <Header />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="hero min-h-[60vh] bg-base-200">
+        <section className="hero bg-base-200 min-h-[60vh]">
           <div className="hero-content text-center">
             <div className="max-w-2xl">
-              <h1 className="text-5xl font-bold text-base-content mb-6">Class Timetable</h1>
-              <p className="text-xl text-base-content/70">
+              <h1 className="text-base-content mb-6 text-5xl font-bold">Class Timetable</h1>
+              <p className="text-base-content/70 text-xl">
                 View our weekly schedule and find the perfect time for your learning journey
               </p>
             </div>
@@ -28,18 +35,18 @@ const TimetablePage: React.FC<PageProps> = () => {
         </section>
 
         {/* Timetable Section */}
-        <section className="py-20 bg-base-100">
+        <section className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-base-content mb-4">Weekly Schedule</h2>
-              <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
+            <div className="mb-12 text-center">
+              <h2 className="text-base-content mb-4 text-3xl font-bold">Weekly Schedule</h2>
+              <p className="text-base-content/70 mx-auto max-w-2xl text-lg">
                 Our flexible timetable accommodates various schedules and learning preferences
               </p>
             </div>
 
             {/* Timetable Grid */}
             <div className="overflow-x-auto">
-              <table className="table table-zebra w-full">
+              <table className="table-zebra table w-full">
                 <thead>
                   <tr>
                     <th className="bg-primary text-primary-content">Time</th>
@@ -53,7 +60,7 @@ const TimetablePage: React.FC<PageProps> = () => {
                 <tbody>
                   {timeSlots.map((time) => (
                     <tr key={time}>
-                      <td className="font-semibold bg-base-200">{time}</td>
+                      <td className="bg-base-200 font-semibold">{time}</td>
                       {days.map((day) => (
                         <td key={`${day}-${time}`} className="text-center">
                           {getClassForTimeSlot(day, time)}
@@ -67,7 +74,7 @@ const TimetablePage: React.FC<PageProps> = () => {
 
             {/* Legend */}
             <div className="mt-8 text-center">
-              <h3 className="text-xl font-semibold text-base-content mb-4">Class Types</h3>
+              <h3 className="text-base-content mb-4 text-xl font-semibold">Class Types</h3>
               <div className="flex flex-wrap justify-center gap-4">
                 <div className="badge badge-primary badge-lg">Mathematics</div>
                 <div className="badge badge-secondary badge-lg">English</div>
@@ -79,16 +86,18 @@ const TimetablePage: React.FC<PageProps> = () => {
         </section>
 
         {/* Booking Information */}
-        <section className="py-20 bg-base-200">
+        <section className="bg-base-200 py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-base-content text-center mb-12">Booking Information</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="mx-auto max-w-4xl">
+              <h2 className="text-base-content mb-12 text-center text-3xl font-bold">
+                Booking Information
+              </h2>
+
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                 <div className="card bg-base-100 shadow-xl">
                   <div className="card-body">
-                    <h3 className="card-title text-xl text-primary">How to Book</h3>
-                    <ul className="space-y-2 text-base-content/70">
+                    <h3 className="card-title text-primary text-xl">How to Book</h3>
+                    <ul className="text-base-content/70 space-y-2">
                       <li>• Contact us to discuss your learning goals</li>
                       <li>• Choose your preferred time slots</li>
                       <li>• Confirm your schedule with our team</li>
@@ -99,8 +108,8 @@ const TimetablePage: React.FC<PageProps> = () => {
 
                 <div className="card bg-base-100 shadow-xl">
                   <div className="card-body">
-                    <h3 className="card-title text-xl text-primary">Flexibility</h3>
-                    <ul className="space-y-2 text-base-content/70">
+                    <h3 className="card-title text-primary text-xl">Flexibility</h3>
+                    <ul className="text-base-content/70 space-y-2">
                       <li>• One-on-one or small group sessions</li>
                       <li>• Online or in-person options</li>
                       <li>• Customizable session lengths</li>
@@ -110,25 +119,24 @@ const TimetablePage: React.FC<PageProps> = () => {
                 </div>
               </div>
 
-              <div className="text-center mt-8">
-                <button className="btn btn-primary btn-lg">
-                  Book Your Session
-                </button>
+              <div className="mt-8 text-center">
+                <button className="btn btn-primary btn-lg">Book Your Session</button>
               </div>
             </div>
           </div>
         </section>
 
         {/* Additional Information */}
-        <section className="py-20 bg-base-100">
+        <section className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-base-content mb-8">Need a Custom Schedule?</h2>
-              <p className="text-lg text-base-content/70 leading-relaxed mb-8">
-                Can't find a suitable time in our regular schedule? We understand that every student has unique 
-                needs and constraints. Contact us to discuss custom scheduling options that work for you.
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="text-base-content mb-8 text-3xl font-bold">Need a Custom Schedule?</h2>
+              <p className="text-base-content/70 mb-8 text-lg leading-relaxed">
+                Can&apos;t find a suitable time in our regular schedule? We understand that every
+                student has unique needs and constraints. Contact us to discuss custom scheduling
+                options that work for you.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col justify-center gap-4 sm:flex-row">
                 <button className="btn btn-outline btn-primary">Contact Us</button>
                 <button className="btn btn-primary">Request Custom Time</button>
               </div>
@@ -149,7 +157,7 @@ const getClassForTimeSlot = (day: string, time: string): string => {
   if (day === "Thursday" && time === "3:00 PM") return "Mathematics";
   if (day === "Friday" && time === "4:00 PM") return "English";
   if (day === "Saturday" && time === "10:00 AM") return "Mathematics";
-  
+
   // Randomly assign some classes for demonstration
   const classes = ["Mathematics", "English", "Science", "Available"];
   const randomIndex = Math.floor(Math.random() * classes.length);

@@ -17,35 +17,29 @@ interface TutorCardProps {
 }
 
 const TutorCard: React.FC<TutorCardProps> = ({ tutor }) => {
-  const image = tutor.avatar?.gatsbyImageData
-    ? getImage(tutor.avatar.gatsbyImageData)
-    : null;
+  const image = tutor.avatar?.gatsbyImageData ? getImage(tutor.avatar.gatsbyImageData) : null;
   const tutorName = tutor.name || "Unknown Tutor";
   const tutorBio = tutor.bio?.raw || null;
 
   return (
-    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+    <div className="card bg-base-100 shadow-xl transition-shadow duration-300 hover:shadow-2xl">
       <figure className="px-6 pt-6">
         {image ? (
           <GatsbyImage
             image={image}
             alt={`${tutorName}'s avatar`}
-            className="rounded-full w-24 h-24 object-cover"
+            className="h-24 w-24 rounded-full object-cover"
           />
         ) : (
           <div className="avatar placeholder">
-            <div className="bg-neutral text-neutral-content rounded-full w-24 h-24">
-              <span className="text-3xl">
-                {tutorName.charAt(0).toUpperCase()}
-              </span>
+            <div className="bg-neutral text-neutral-content h-24 w-24 rounded-full">
+              <span className="text-3xl">{tutorName.charAt(0).toUpperCase()}</span>
             </div>
           </div>
         )}
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title text-xl font-bold text-primary">
-          {tutorName}
-        </h2>
+        <h2 className="card-title text-primary text-xl font-bold">{tutorName}</h2>
         <div className="text-base-content/70 text-sm leading-relaxed">
           {tutorBio
             ? (() => {
@@ -55,14 +49,12 @@ const TutorCard: React.FC<TutorCardProps> = ({ tutor }) => {
                   return documentToReactComponents(parsedBio);
                 } catch (error) {
                   // If parsing fails, fall back to HTML rendering
-                  return (
-                    <span dangerouslySetInnerHTML={{ __html: tutorBio }} />
-                  );
+                  return <span dangerouslySetInnerHTML={{ __html: tutorBio }} />;
                 }
               })()
             : "Experienced tutor dedicated to helping students achieve their academic goals."}
         </div>
-        <div className="card-actions justify-end mt-4">
+        <div className="card-actions mt-4 justify-end">
           <button className="btn btn-primary btn-sm">View Profile</button>
           <button className="btn btn-outline btn-sm">Contact</button>
         </div>

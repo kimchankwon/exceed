@@ -17,21 +17,19 @@ interface TutorsSectionProps {
 const TutorsSection: React.FC<TutorsSectionProps> = ({ tutors }) => {
   if (!tutors || tutors.length === 0) {
     return (
-      <section className="py-16 bg-base-200">
+      <section className="bg-base-200 py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-base-content mb-4">
-              Our Expert Tutors
-            </h2>
+            <h2 className="text-base-content mb-4 text-3xl font-bold">Our Expert Tutors</h2>
             <p className="text-base-content/70 mb-8">
               Meet our dedicated team of experienced educators
             </p>
-            <div className="alert alert-info max-w-md mx-auto">
+            <div className="alert alert-info mx-auto max-w-md">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                className="stroke-current shrink-0 w-6 h-6"
+                className="h-6 w-6 shrink-0 stroke-current"
               >
                 <path
                   strokeLinecap="round"
@@ -49,19 +47,17 @@ const TutorsSection: React.FC<TutorsSectionProps> = ({ tutors }) => {
   }
 
   return (
-    <section className="py-16 bg-base-200">
+    <section className="bg-base-200 py-16">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-base-content mb-4">
-            Our Expert Tutors
-          </h2>
-          <p className="text-base-content/70 max-w-2xl mx-auto">
-            Meet our dedicated team of experienced educators who are passionate
-            about helping students succeed
+        <div className="mb-12 text-center">
+          <h2 className="text-base-content mb-4 text-3xl font-bold">Our Expert Tutors</h2>
+          <p className="text-base-content/70 mx-auto max-w-2xl">
+            Meet our dedicated team of experienced educators who are passionate about helping
+            students succeed
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {tutors.map((tutor) => (
             <TutorCard key={tutor.id} tutor={tutor} />
           ))}

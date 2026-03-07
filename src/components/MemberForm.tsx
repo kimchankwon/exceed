@@ -11,10 +11,7 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (
-    values: MemberFormData,
-    { setSubmitting, resetForm }: any
-  ) => {
+  const handleSubmit = async (values: MemberFormData, { setSubmitting, resetForm }: any) => {
     setIsSubmitting(true);
     setError(null);
 
@@ -30,12 +27,10 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
-        );
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      const result = await response.json();
+      await response.json();
       setSuccess(true);
 
       // Reset form
@@ -46,11 +41,7 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
         onSubmit(values);
       }
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "An error occurred while creating the member"
-      );
+      setError(err instanceof Error ? err.message : "An error occurred while creating the member");
     } finally {
       setIsSubmitting(false);
       setSubmitting(false);
@@ -63,17 +54,15 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl mx-auto">
+    <div className="card bg-base-100 mx-auto w-96 shadow-xl">
       <div className="card-body">
-        <h2 className="card-title text-2xl font-bold text-center mb-6">
-          Create New Member
-        </h2>
+        <h2 className="card-title mb-6 text-center text-2xl font-bold">Create New Member</h2>
 
         {success && (
           <div className="alert alert-success mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current shrink-0 h-6 w-6"
+              className="h-6 w-6 shrink-0 stroke-current"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -92,7 +81,7 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
           <div className="alert alert-error mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="stroke-current shrink-0 h-6 w-6"
+              className="h-6 w-6 shrink-0 stroke-current"
               fill="none"
               viewBox="0 0 24 24"
             >
@@ -126,11 +115,7 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
                   placeholder="Enter member's full name"
                   disabled={isSubmitting}
                 />
-                <ErrorMessage
-                  name="name"
-                  component="div"
-                  className="text-error text-sm mt-1"
-                />
+                <ErrorMessage name="name" component="div" className="text-error mt-1 text-sm" />
               </div>
 
               <div className="form-control">
@@ -145,11 +130,7 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
                   placeholder="Enter member's email address"
                   disabled={isSubmitting}
                 />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-error text-sm mt-1"
-                />
+                <ErrorMessage name="email" component="div" className="text-error mt-1 text-sm" />
               </div>
 
               <div className="card-actions justify-end pt-4">
@@ -169,11 +150,7 @@ const MemberForm: React.FC<MemberFormProps> = ({ onSubmit }) => {
                 </button>
 
                 {success && (
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="btn btn-outline"
-                  >
+                  <button type="button" onClick={resetForm} className="btn btn-outline">
                     New Member
                   </button>
                 )}

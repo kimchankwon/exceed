@@ -3,23 +3,19 @@ import { Link, HeadFC, PageProps } from "gatsby";
 
 const NotFoundPage: React.FC<PageProps> = () => {
   return (
-    <div className="min-h-screen bg-base-100 flex items-center justify-center">
-      <main className="text-center px-4">
-        <div className="card bg-base-200 shadow-xl max-w-md mx-auto">
+    <div className="bg-base-100 flex min-h-screen items-center justify-center">
+      <main className="px-4 text-center">
+        <div className="card bg-base-200 mx-auto max-w-md shadow-xl">
           <div className="card-body">
-            <h1 className="text-4xl font-bold mb-6 text-error">
-              Page not found
-            </h1>
-            <p className="text-lg mb-6">
-              Sorry 😔, we couldn't find what you were looking for.
+            <h1 className="text-error mb-6 text-4xl font-bold">Page not found</h1>
+            <p className="mb-6 text-lg">
+              Sorry 😔, we couldn&apos;t find what you were looking for.
               <br />
               {process.env.NODE_ENV === "development" ? (
                 <>
                   <br />
                   Try creating a page in{" "}
-                  <code className="bg-base-100 px-2 py-1 rounded text-sm">
-                    src/pages/
-                  </code>
+                  <code className="bg-base-100 rounded px-2 py-1 text-sm">src/pages/</code>
                   .
                   <br />
                 </>
