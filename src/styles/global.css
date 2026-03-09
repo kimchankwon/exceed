@@ -21,3 +21,13 @@
 .btn-sm {
   --fontsize: 11px;
 }
+
+.text-xs {
+  font-size: 11px;
+  line-height: 1rem;
+}
+
+@theme {
+  --color-sky-soft: #c9e0f3;
+  --color-light-gray: #ced0d3;
+}

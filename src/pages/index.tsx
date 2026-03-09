@@ -2,6 +2,7 @@ import { graphql, type PageProps } from "gatsby";
 import * as React from "react";
 import MemberForm from "../components/MemberForm";
 import { GatsbyImage } from "gatsby-plugin-image";
+import Footer from "../components/Footer";
 
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data }) => {
   const {
@@ -9,19 +10,22 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
     landingPage2,
     landingPage3,
     landingPage4,
-    landingPage5,
+    landingPageTutors,
+    landingPageTestimonials,
     landingPage6,
     allContentfulFrequentlyAskedQuestions,
   } = data;
 
   return (
     <div>
+      {/* Card 1 */}
       <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage1?.description?.description}
         </h1>
         <button className="btn btn-primary btn-sm rounded-full font-light">CONTACT US</button>
       </div>
+      {/* Card 2 */}
       <div className="bg-base-200 grid grid-cols-1 px-8 pt-12 sm:grid-cols-2">
         <div className="flex flex-col items-start">
           <p className="w-full max-w-sm text-sm text-white">
@@ -37,6 +41,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           />
         )}
       </div>
+      {/* Card 3 */}
       <div className="bg-base-200 grid grid-cols-1 items-end px-8 py-12 sm:grid-cols-2">
         {landingPage3?.photo?.gatsbyImageData && (
           <GatsbyImage
@@ -52,18 +57,20 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           <p className="w-full max-w-sm text-white">{landingPage3?.description2?.description2}</p>
         </div>
       </div>
+      {/* Card 4 - TODO */}
       <div className="flex flex-col items-center justify-center gap-5 px-8 py-28">
         <h1 className="max-w-xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage4?.description?.description}
         </h1>
         <p className="max-w-sm text-center text-xs">{landingPage4?.description2?.description2}</p>
       </div>
+      {/* Tutors Section - TODO Carousel */}
       <div className="flex flex-col px-8 py-28">
-        <p className="max-w-xl pb-12 text-3xl">{landingPage5?.description?.description}</p>
-        {landingPage5?.photo?.gatsbyImageData && (
+        <p className="max-w-xl pb-12 text-3xl">{landingPageTutors?.description?.description}</p>
+        {landingPageTutors?.photo?.gatsbyImageData && (
           <GatsbyImage
-            image={landingPage5.photo.gatsbyImageData}
-            alt={landingPage5.title || "Landing Page Image"}
+            image={landingPageTutors.photo.gatsbyImageData}
+            alt={landingPageTutors.title || "Landing Page Image"}
             className="w-68"
           />
         )}
@@ -72,7 +79,17 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         <button className="btn btn-secondary btn-sm rounded-full font-medium">MEET OUR TEAM</button>
       </div>
       {/* Testimonials Section */}
-      {/* TODO */}
+      <div className="flex flex-col items-center bg-black py-32">
+        <h1 className="max-w-180 pb-32 text-center text-3xl font-extrabold text-white sm:text-5xl">
+          {landingPageTestimonials?.description?.description}
+        </h1>
+        {/* TODO */}
+        <div className="flex justify-center">
+          <button className="btn btn-sm rounded-full border border-black border-white bg-black font-medium text-white">
+            LOAD MORE
+          </button>
+        </div>
+      </div>
       <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage6?.description?.description}
@@ -105,8 +122,12 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           </div>
         ))}
       </div>
+      <div className="bg-sky-soft mx-8 py-8">
+        <h1 className="px-6 text-2xl font-extrabold">NEED GUIDANCE? LET'S CHAT.</h1>
+      </div>
+      <Footer />
       {/* Member Form Section */}
-      <section className="bg-base-100">
+      {/* <section className="bg-base-100">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <h2 className="text-base-content mb-4 text-3xl font-bold">Get Started Today</h2>
@@ -121,7 +142,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
             }}
           />
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
@@ -169,7 +190,21 @@ export const landingPageQuery = graphql`
         description2
       }
     }
-    landingPage5: contentfulContentCard(title: { eq: "Landing Page 5" }) {
+    landingPageTutors: contentfulContentCard(title: { eq: "Landing Page Tutors Section" }) {
+      title
+      description {
+        description
+      }
+      description2 {
+        description2
+      }
+      photo {
+        gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
+      }
+    }
+    landingPageTestimonials: contentfulContentCard(
+      title: { eq: "Landing Page Testimonials Section" }
+    ) {
       title
       description {
         description
