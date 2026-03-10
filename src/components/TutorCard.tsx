@@ -1,4 +1,3 @@
-import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -16,7 +15,7 @@ interface TutorCardProps {
   };
 }
 
-const TutorCard: React.FC<TutorCardProps> = ({ tutor }) => {
+const TutorCard = ({ tutor }: TutorCardProps) => {
   const image = tutor.avatar?.gatsbyImageData ? getImage(tutor.avatar.gatsbyImageData) : null;
   const tutorName = tutor.name || "Unknown Tutor";
   const tutorBio = tutor.bio?.raw || null;

@@ -1,7 +1,28 @@
-import React from "react";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
-const Footer: React.FC = () => {
+const Footer = () => {
+  const data = useStaticQuery<Queries.FooterQueryQuery>(graphql`
+    query FooterQuery {
+      allContentfulFooter(sort: [{ order: ASC }]) {
+        nodes {
+          id
+          title
+          links {
+            id
+            title
+            url
+          }
+          hrefs {
+            id
+            title
+            url
+            type
+          }
+        }
+      }
+    }
+  `);
+  const footerItems = data.allContentfulFooter.nodes;
   return (
     <footer className="bg-base-300 text-xs text-white/55">
       {/* Top Row: Logo + Newsletter */}
@@ -21,49 +42,38 @@ const Footer: React.FC = () => {
           <button className="btn btn-sm rounded-full border-0 bg-white p-4">SUBSCRIBE</button>
         </div>
       </div>
-
       {/* Link Columns */}
       <div className="grid grid-cols-2 gap-8 px-8 pb-10 sm:grid-cols-4">
-        <nav className="flex flex-col items-start gap-1">
-          <p className="pb-4 text-white/70">Information</p>
-          <Link to="/about-us" className="link link-hover">
-            About Us
-          </Link>
-          <Link to="/timetable" className="link link-hover">
-            Timetable
-          </Link>
-          <Link to="/contact-us" className="link link-hover">
-            Enquire
-          </Link>
-        </nav>
-        <nav className="flex flex-col items-start gap-1">
-          <p className="pb-4 text-white/70">Services</p>
-          <Link to="/services/english/7-8" className="link link-hover">
-            English Year 7-8
-          </Link>
-          <Link to="/services/english/9-10" className="link link-hover">
-            English Year 9-10
-          </Link>
-          <Link to="/services/english/11-12" className="link link-hover">
-            English Year 11-12
-          </Link>
-          <div className="pb-2"></div>
-          <Link to="/services/maths/7-8" className="link link-hover">
-            Maths Year 7-8
-          </Link>
-          <Link to="/services/maths/9-10" className="link link-hover">
-            Maths Year 9-10
-          </Link>
-          <Link to="/services/maths/11-12" className="link link-hover">
-            Maths Year 11-12
-          </Link>
-        </nav>
-        <nav className="flex max-w-32 flex-col items-start gap-1">
-          <p className="pb-4 text-white/70">Contact Us</p>
-          <span>info@exceed.com.au</span>
-          <span>0412 345 678</span>
-          <span>123 Example St, Sydney NSW 2000</span>
-        </nav>
+        {footerItems.map((f) => (
+          <nav key={f.id} className="flex flex-col items-start gap-1">
+            <p className="text-white/70">{f.title}</p>
+            {f.links?.map((link, i) =>
+              link ? (
+                <Link
+                  key={link.id}
+                  to={link.url ?? ""}
+                  className={"link link-hover" + (i % 3 === 0 ? " pt-3" : "")}
+                >
+                  {link.title}
+                </Link>
+              ) : null
+            )}
+            {f.hrefs?.map((href, i) =>
+              href ? (
+                <a
+                  key={href.id}
+                  href={href.url ?? ""}
+                  target={href.type === "map" ? "_blank" : undefined}
+                  rel={href.type === "map" ? "noopener noreferrer" : undefined}
+                  className={"link link-hover" + (i % 3 === 0 ? " pt-3" : "")}
+                >
+                  {href.title}
+                </a>
+              ) : null
+            )}
+          </nav>
+        ))}
+        {/* TODO Socials in footer */}
         <nav className="flex flex-col items-start gap-1">
           <p className="pb-4 text-white/70">Socials</p>
           <div className="flex gap-4">
@@ -113,11 +123,12 @@ const Footer: React.FC = () => {
         </nav>
       </div>
 
+      {/* TODO Bottom Bar */}
       {/* Bottom Bar */}
       <div className="mx-8 border-t border-white/20" />
       <div className="flex items-center justify-between px-8 pt-4 pb-6">
         <span>EXCEED Education&copy; 2026. All rights reserved.</span>
-        <Link to="/" className="link link-hover">
+        <Link to="/terms-and-conditions" className="link link-hover">
           Terms &amp; Conditions
         </Link>
       </div>

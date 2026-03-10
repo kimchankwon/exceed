@@ -1,4 +1,3 @@
-import React from "react";
 import TutorCard from "./TutorCard";
 
 interface TutorsSectionProps {
@@ -14,7 +13,7 @@ interface TutorsSectionProps {
   }>;
 }
 
-const TutorsSection: React.FC<TutorsSectionProps> = ({ tutors }) => {
+const TutorsSection = ({ tutors }: TutorsSectionProps) => {
   if (!tutors || tutors.length === 0) {
     return (
       <section className="bg-base-200 py-16">

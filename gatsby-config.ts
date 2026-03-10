@@ -9,6 +9,7 @@ const config: GatsbyConfig = {
     siteUrl: `https://TODO.com`,
   },
   graphqlTypegen: true,
+  jsxRuntime: "automatic",
   flags: {
     FUNCTIONS: true,
   },
@@ -24,7 +25,6 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: true,
-        jsxPragma: `jsx`,
         allExtensions: true,
       },
     },

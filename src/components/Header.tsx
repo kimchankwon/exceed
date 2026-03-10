@@ -1,14 +1,43 @@
-import React from "react";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { useLocation } from "@reach/router";
 
-const Header: React.FC = () => {
+const Header = () => {
   const location = useLocation();
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location.pathname.includes(path);
 
+  const data = useStaticQuery<Queries.HeaderQueryQuery>(graphql`
+    query HeaderQuery {
+      header: contentfulHeader(title: { eq: "Header" }) {
+        id
+        title
+        links {
+          ... on ContentfulLink {
+            id
+            title
+            url
+          }
+          ... on ContentfulFooter {
+            id
+            title
+            links {
+              id
+              title
+              url
+            }
+          }
+        }
+        buttons {
+          id
+          title
+          url
+        }
+      }
+    }
+  `);
+  const { header } = data;
   return (
-    <header className="navbar bg-base-100 fixed top-0 right-0 left-0 z-50 w-full min-w-full shadow-lg">
+    <header className="navbar fixed top-0 right-0 left-0 z-10 w-full min-w-full opacity-100">
       <div className="navbar-start flex-1">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,44 +60,40 @@ const Header: React.FC = () => {
           </div>
           <ul
             tabIndex={-1}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <Link to="/about-us" className={isActive("/about-us") ? "active" : ""}>
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/timetable" className={isActive("/timetable") ? "active" : ""}>
-                Timetable
-              </Link>
-            </li>
-            <li>
-              <details>
-                <summary>Services</summary>
-                <ul className="p-2">
-                  <li>
-                    <Link to="/services/maths">Maths</Link>
-                  </li>
-                  <li>
+            {header?.links?.map((link) => {
+              if (link && "links" in link && link.links) {
+                return (
+                  <li key={link.id}>
                     <details>
-                      <summary>English</summary>
+                      <summary>{link.title}</summary>
                       <ul className="p-2">
-                        <li>
-                          <Link to="/services/english/7-8">7-8</Link>
-                        </li>
-                        <li>
-                          <Link to="/services/english/9-10">9-10</Link>
-                        </li>
-                        <li>
-                          <Link to="/services/english/11-12">11-12</Link>
-                        </li>
+                        {link.links?.map((l, i) =>
+                          l ? (
+                            <li key={l.id}>
+                              <Link
+                                to={l.url ?? ""}
+                                className={"link link-hover" + (i % 3 === 0 ? " pt-3" : "")}
+                              >
+                                {l.title}
+                              </Link>
+                            </li>
+                          ) : null
+                        )}
                       </ul>
                     </details>
                   </li>
-                </ul>
-              </details>
-            </li>
+                );
+              }
+              if (link && "url" in link) {
+                return (
+                  <li key={link.id}>
+                    <Link to={link.url ?? ""}>{link.title}</Link>
+                  </li>
+                );
+              }
+            })}
             <li>
               <Link to="/contact-us" className="btn btn-primary">
                 Contact Us
@@ -86,49 +111,50 @@ const Header: React.FC = () => {
 
       <div className="navbar-center hidden flex-1 justify-center lg:flex">
         <ul className="menu menu-horizontal px-1">
-          <li>
-            <Link to="/about-us" className={isActive("/about-us") ? "active" : ""}>
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/timetable" className={isActive("/timetable") ? "active" : ""}>
-              Timetable
-            </Link>
-          </li>
-          <li>
-            <details>
-              <summary>Services</summary>
-              <ul className="w-52 p-2">
-                <li>
-                  <Link to="/services/maths">Maths</Link>
-                </li>
-                <li>
+          {header?.links?.map((link) => {
+            if (link && "links" in link && link.links) {
+              return (
+                <li key={link.id}>
                   <details>
-                    <summary>English</summary>
-                    <ul className="p-2">
-                      <li>
-                        <Link to="/services/english/7-8">7-8</Link>
-                      </li>
-                      <li>
-                        <Link to="/services/english/9-10">9-10</Link>
-                      </li>
-                      <li>
-                        <Link to="/services/english/11-12">11-12</Link>
-                      </li>
+                    <summary>{link.title}</summary>
+                    <ul className="w-52 p-2">
+                      {link.links?.map((l, i) =>
+                        l ? (
+                          <li key={l.id}>
+                            <Link
+                              to={l.url ?? ""}
+                              className={"link link-hover" + (i % 3 === 0 ? " pt-3" : "")}
+                            >
+                              {l.title}
+                            </Link>
+                          </li>
+                        ) : null
+                      )}
                     </ul>
                   </details>
                 </li>
-              </ul>
-            </details>
-          </li>
+              );
+            }
+            if (link && "url" in link) {
+              return (
+                <li key={link.id}>
+                  <Link to={link.url ?? ""}>{link.title}</Link>
+                </li>
+              );
+            }
+          })}
         </ul>
       </div>
-
       <div className="navbar-end flex-1 justify-end">
-        <Link to="/contact-us" className="btn btn-primary">
-          Contact Us
-        </Link>
+        {header.buttons.map((button) => (
+          <Link
+            key={button.id}
+            to={button.url ?? ""}
+            className="btn btn-primary btn-sm rounded-full"
+          >
+            {button.title}
+          </Link>
+        ))}
       </div>
     </header>
   );

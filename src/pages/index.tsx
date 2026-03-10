@@ -3,6 +3,7 @@ import * as React from "react";
 import MemberForm from "../components/MemberForm";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data }) => {
   const {
@@ -18,6 +19,8 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
 
   return (
     <div>
+      <Header />
+      {/* Video TODO */}
       {/* Card 1 */}
       <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
@@ -113,8 +116,8 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           <div key={faq.id} className="w-full max-w-md">
             <div className="collapse-arrow collapse">
               <input type="checkbox" />
-              <div className="collapse-title text-md py-3 pl-0">{faq.title}</div>
-              <div className="collapse-content px-0 text-sm">{faq.description?.description}</div>
+              <div className="collapse-title text-md py-3 pl-0">{faq.question}</div>
+              <div className="collapse-content px-0 text-sm">{faq.answer?.answer}</div>
             </div>
             {index < allContentfulFrequentlyAskedQuestions.nodes.length - 1 && (
               <div className="h-px bg-gray-300" />
@@ -225,10 +228,10 @@ export const landingPageQuery = graphql`
     allContentfulFrequentlyAskedQuestions(sort: [{ order: ASC }]) {
       nodes {
         id
-        title
         order
-        description {
-          description
+        question
+        answer {
+          answer
         }
       }
     }
