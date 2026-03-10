@@ -37,10 +37,10 @@ const Header = () => {
   `);
   const { header } = data;
   return (
-    <header className="navbar fixed top-0 right-0 left-0 z-10 w-full min-w-full opacity-100">
-      <div className="navbar-start flex-1">
+    <header className="navbar fixed top-0 right-0 left-0 z-10 grid w-full min-w-full grid-cols-[1fr_auto_1fr] opacity-100">
+      <div className="navbar-start justify-self-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost sm:hidden">
             <svg
               className="h-5 w-5"
               width="24"
@@ -108,8 +108,7 @@ const Header = () => {
           Exceed Education
         </Link>
       </div>
-
-      <div className="navbar-center hidden flex-1 justify-center lg:flex">
+      <div className="navbar-center hidden justify-center gap-8 sm:block">
         <ul className="menu menu-horizontal px-1">
           {header?.links?.map((link) => {
             if (link && "links" in link && link.links) {
@@ -145,7 +144,8 @@ const Header = () => {
           })}
         </ul>
       </div>
-      <div className="navbar-end flex-1 justify-end">
+      <div className="flex sm:hidden"></div>
+      <div className="navbar-end justify-self-end">
         {header.buttons.map((button) => (
           <Link
             key={button.id}
