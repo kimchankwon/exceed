@@ -19,14 +19,20 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
     <div>
       {/* Video TODO */}
       {/* Card 1 */}
-      <div data-header-theme="light" className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
+      <div
+        data-header-theme="light"
+        className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28"
+      >
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage1?.description?.description}
         </h1>
         <button className="btn btn-primary btn-sm rounded-full font-light">CONTACT US</button>
       </div>
       {/* Card 2 */}
-      <div data-header-theme="dark" className="bg-base-200 grid grid-cols-1 px-8 pt-12 sm:grid-cols-2">
+      <div
+        data-header-theme="dark"
+        className="bg-base-200 grid grid-cols-1 px-8 pt-12 sm:grid-cols-2"
+      >
         <div className="flex flex-col items-start">
           <p className="w-full max-w-sm text-sm text-white">
             {landingPage2?.description?.description}
@@ -42,7 +48,10 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         )}
       </div>
       {/* Card 3 */}
-      <div data-header-theme="dark" className="bg-base-200 grid grid-cols-1 items-end px-8 py-12 sm:grid-cols-2">
+      <div
+        data-header-theme="dark"
+        className="bg-base-200 grid grid-cols-1 items-end px-8 py-12 sm:grid-cols-2"
+      >
         {landingPage3?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={landingPage3.photo.gatsbyImageData}
@@ -58,7 +67,10 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         </div>
       </div>
       {/* Card 4 - TODO */}
-      <div data-header-theme="light" className="flex flex-col items-center justify-center gap-5 px-8 py-28">
+      <div
+        data-header-theme="light"
+        className="flex flex-col items-center justify-center gap-5 px-8 py-28"
+      >
         <h1 className="max-w-xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage4?.description?.description}
         </h1>
@@ -85,12 +97,15 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         </h1>
         {/* TODO */}
         <div className="flex justify-center">
-          <button className="btn btn-sm rounded-full border border-black border-white bg-black font-medium text-white">
+          <button className="btn btn-sm rounded-full border border-white bg-black font-medium text-white">
             LOAD MORE
           </button>
         </div>
       </div>
-      <div data-header-theme="light" className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
+      <div
+        data-header-theme="light"
+        className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28"
+      >
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage6?.description?.description}
         </h1>

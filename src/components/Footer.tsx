@@ -1,4 +1,5 @@
 import { Link, useStaticQuery, graphql } from "gatsby";
+import logoFullWhite from "../images/logo-full-white.svg";
 
 const Footer = () => {
   const data = useStaticQuery<Queries.FooterQueryQuery>(graphql`
@@ -27,12 +28,11 @@ const Footer = () => {
     <footer className="bg-base-300 text-xs text-white/55">
       {/* Top Row: Logo + Newsletter */}
       <div className="grid grid-cols-1 items-center gap-6 px-8 pt-6 pb-12 sm:grid-cols-2">
-        <Link to="/" className="flex items-center gap-2 text-xl font-bold">
-          <div className="bg-primary flex h-8 w-8 items-center justify-center rounded">
-            <span className="text-primary-content text-lg font-bold">X</span>
-          </div>
-          EXCEED Education
-        </Link>
+        <img
+          src={logoFullWhite}
+          alt="Exceed"
+          className="h-7 justify-self-center sm:justify-self-start"
+        />
         <div className="flex items-center gap-6">
           <input
             type="email"
