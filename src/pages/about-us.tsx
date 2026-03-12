@@ -1,15 +1,12 @@
 import * as React from "react";
 import { HeadFC, PageProps } from "gatsby";
-import Header from "../components/Header";
 
 const AboutUsPage: React.FC<PageProps> = () => {
   return (
     <div className="bg-base-100 min-h-screen">
-      <Header />
-
-      <main className="pt-20">
+      <div className="pt-20">
         {/* Hero Section */}
-        <section className="hero bg-base-200 min-h-[60vh]">
+        <section data-header-theme="dark" className="hero bg-base-200 min-h-[60vh]">
           <div className="hero-content text-center">
             <div className="max-w-2xl">
               <h1 className="text-base-content mb-6 text-5xl font-bold">About Us</h1>
@@ -21,7 +18,7 @@ const AboutUsPage: React.FC<PageProps> = () => {
         </section>
 
         {/* Mission Section */}
-        <section className="bg-base-100 py-20">
+        <section data-header-theme="light" className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-base-content mb-8 text-3xl font-bold">Our Mission</h2>
@@ -41,7 +38,7 @@ const AboutUsPage: React.FC<PageProps> = () => {
         </section>
 
         {/* Values Section */}
-        <section className="bg-base-200 py-20">
+        <section data-header-theme="dark" className="bg-base-200 py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-base-content mb-16 text-center text-3xl font-bold">Our Values</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -124,7 +121,7 @@ const AboutUsPage: React.FC<PageProps> = () => {
         </section>
 
         {/* Team Section */}
-        <section className="bg-base-100 py-20">
+        <section data-header-theme="light" className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
             <div className="mb-16 text-center">
               <h2 className="text-base-content mb-4 text-3xl font-bold">Our Team</h2>
@@ -184,7 +181,7 @@ const AboutUsPage: React.FC<PageProps> = () => {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

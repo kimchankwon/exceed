@@ -1,15 +1,12 @@
 import * as React from "react";
 import { HeadFC, PageProps } from "gatsby";
-import Header from "../components/Header";
 
 const ContactUsPage: React.FC<PageProps> = () => {
   return (
     <div className="bg-base-100 min-h-screen">
-      <Header />
-
-      <main className="pt-20">
+      <div className="pt-20">
         {/* Hero Section */}
-        <section className="hero bg-base-200 min-h-[60vh]">
+        <section data-header-theme="dark" className="hero bg-base-200 min-h-[60vh]">
           <div className="hero-content text-center">
             <div className="max-w-2xl">
               <h1 className="text-base-content mb-6 text-5xl font-bold">Contact Us</h1>
@@ -21,7 +18,7 @@ const ContactUsPage: React.FC<PageProps> = () => {
         </section>
 
         {/* Contact Information */}
-        <section className="bg-base-100 py-20">
+        <section data-header-theme="light" className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
               {/* Contact Form */}
@@ -232,7 +229,7 @@ const ContactUsPage: React.FC<PageProps> = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="bg-base-200 py-20">
+        <section data-header-theme="dark" className="bg-base-200 py-20">
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
               <h2 className="text-base-content mb-4 text-3xl font-bold">
@@ -298,7 +295,7 @@ const ContactUsPage: React.FC<PageProps> = () => {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };

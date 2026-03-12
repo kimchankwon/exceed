@@ -2,8 +2,6 @@ import { graphql, type PageProps } from "gatsby";
 import * as React from "react";
 import MemberForm from "../components/MemberForm";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data }) => {
   const {
@@ -19,17 +17,16 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
 
   return (
     <div>
-      <Header />
       {/* Video TODO */}
       {/* Card 1 */}
-      <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
+      <div data-header-theme="light" className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage1?.description?.description}
         </h1>
         <button className="btn btn-primary btn-sm rounded-full font-light">CONTACT US</button>
       </div>
       {/* Card 2 */}
-      <div className="bg-base-200 grid grid-cols-1 px-8 pt-12 sm:grid-cols-2">
+      <div data-header-theme="dark" className="bg-base-200 grid grid-cols-1 px-8 pt-12 sm:grid-cols-2">
         <div className="flex flex-col items-start">
           <p className="w-full max-w-sm text-sm text-white">
             {landingPage2?.description?.description}
@@ -45,7 +42,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         )}
       </div>
       {/* Card 3 */}
-      <div className="bg-base-200 grid grid-cols-1 items-end px-8 py-12 sm:grid-cols-2">
+      <div data-header-theme="dark" className="bg-base-200 grid grid-cols-1 items-end px-8 py-12 sm:grid-cols-2">
         {landingPage3?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={landingPage3.photo.gatsbyImageData}
@@ -61,14 +58,14 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         </div>
       </div>
       {/* Card 4 - TODO */}
-      <div className="flex flex-col items-center justify-center gap-5 px-8 py-28">
+      <div data-header-theme="light" className="flex flex-col items-center justify-center gap-5 px-8 py-28">
         <h1 className="max-w-xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage4?.description?.description}
         </h1>
         <p className="max-w-sm text-center text-xs">{landingPage4?.description2?.description2}</p>
       </div>
       {/* Tutors Section - TODO Carousel */}
-      <div className="flex flex-col px-8 py-28">
+      <div data-header-theme="light" className="flex flex-col px-8 py-28">
         <p className="max-w-xl pb-12 text-3xl">{landingPageTutors?.description?.description}</p>
         {landingPageTutors?.photo?.gatsbyImageData && (
           <GatsbyImage
@@ -78,11 +75,11 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           />
         )}
       </div>
-      <div className="flex justify-center px-8 pb-24">
+      <div data-header-theme="light" className="flex justify-center px-8 pb-24">
         <button className="btn btn-secondary btn-sm rounded-full font-medium">MEET OUR TEAM</button>
       </div>
       {/* Testimonials Section */}
-      <div className="flex flex-col items-center bg-black py-32">
+      <div data-header-theme="dark" className="flex flex-col items-center bg-black py-32">
         <h1 className="max-w-180 pb-32 text-center text-3xl font-extrabold text-white sm:text-5xl">
           {landingPageTestimonials?.description?.description}
         </h1>
@@ -93,7 +90,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           </button>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
+      <div data-header-theme="light" className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28">
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage6?.description?.description}
         </h1>
@@ -107,11 +104,11 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Carousel thing */}
       {/* TODO */}
       {/* FAQ Section */}
-      <div className="flex flex-col px-8 pb-12">
+      <div data-header-theme="light" className="flex flex-col px-8 pb-12">
         <h1 className="max-w-60 text-2xl leading-6 font-extrabold">FREQUENTLY</h1>
         <h1 className="max-w-60 text-2xl leading-6 font-extrabold">ASKED QUESTIONS</h1>
       </div>
-      <div className="flex flex-col items-end px-8 pb-12">
+      <div data-header-theme="light" className="flex flex-col items-end px-8 pb-12">
         {allContentfulFrequentlyAskedQuestions.nodes.map((faq, index) => (
           <div key={faq.id} className="w-full max-w-md">
             <div className="collapse-arrow collapse">
@@ -125,10 +122,9 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           </div>
         ))}
       </div>
-      <div className="bg-sky-soft mx-8 py-8">
+      <div data-header-theme="light" className="bg-sky-soft mx-8 py-8">
         <h1 className="px-6 text-2xl font-extrabold">NEED GUIDANCE? LET'S CHAT.</h1>
       </div>
-      <Footer />
       {/* Member Form Section */}
       {/* <section className="bg-base-100">
         <div className="container mx-auto px-4">

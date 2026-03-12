@@ -1,6 +1,5 @@
 import * as React from "react";
 import { HeadFC, PageProps } from "gatsby";
-import Header from "../components/Header";
 
 const TimetablePage: React.FC<PageProps> = () => {
   const timeSlots = [
@@ -19,11 +18,9 @@ const TimetablePage: React.FC<PageProps> = () => {
 
   return (
     <div className="bg-base-100 min-h-screen">
-      <Header />
-
-      <main className="pt-20">
+      <div className="pt-20">
         {/* Hero Section */}
-        <section className="hero bg-base-200 min-h-[60vh]">
+        <section data-header-theme="dark" className="hero bg-base-200 min-h-[60vh]">
           <div className="hero-content text-center">
             <div className="max-w-2xl">
               <h1 className="text-base-content mb-6 text-5xl font-bold">Class Timetable</h1>
@@ -35,7 +32,7 @@ const TimetablePage: React.FC<PageProps> = () => {
         </section>
 
         {/* Timetable Section */}
-        <section className="bg-base-100 py-20">
+        <section data-header-theme="light" className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
             <div className="mb-12 text-center">
               <h2 className="text-base-content mb-4 text-3xl font-bold">Weekly Schedule</h2>
@@ -86,7 +83,7 @@ const TimetablePage: React.FC<PageProps> = () => {
         </section>
 
         {/* Booking Information */}
-        <section className="bg-base-200 py-20">
+        <section data-header-theme="dark" className="bg-base-200 py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl">
               <h2 className="text-base-content mb-12 text-center text-3xl font-bold">
@@ -127,7 +124,7 @@ const TimetablePage: React.FC<PageProps> = () => {
         </section>
 
         {/* Additional Information */}
-        <section className="bg-base-100 py-20">
+        <section data-header-theme="light" className="bg-base-100 py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="text-base-content mb-8 text-3xl font-bold">Need a Custom Schedule?</h2>
@@ -143,7 +140,7 @@ const TimetablePage: React.FC<PageProps> = () => {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };
