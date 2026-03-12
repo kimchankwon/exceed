@@ -17,7 +17,19 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
 
   return (
     <div>
-      {/* Video TODO */}
+      {/* Video */}
+      <div
+        data-header-theme="dark"
+        className="relative aspect-video w-full overflow-hidden bg-black"
+      >
+        <iframe
+          className="absolute h-full w-full"
+          src="https://player.vimeo.com/video/449787858?background=1&autoplay=1&loop=1&muted=1"
+          title="Exceed Education"
+          allow="autoplay; fullscreen"
+          style={{ border: 0 }}
+        />
+      </div>
       {/* Card 1 */}
       <div
         data-header-theme="light"
