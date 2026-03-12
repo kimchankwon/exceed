@@ -49,7 +49,7 @@ const Header = () => {
     >
       {/* Gradient backdrop blur overlay */}
       <div
-        className="pointer-events-none absolute inset-0 -bottom-4 backdrop-blur-md"
+        className="pointer-events-none absolute inset-0 -bottom-4 backdrop-blur-lg"
         style={{
           maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
           WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
