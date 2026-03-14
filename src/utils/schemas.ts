@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { isValidPhoneNumber } from "react-phone-number-input";
 
 // Member form data schema
 export const memberFormSchema = yup.object({
@@ -23,7 +24,22 @@ export const errorResponseSchema = yup.object({
 
 // Fibery entity response schema
 
+// Contact form schema
+export const contactFormSchema = yup.object({
+  firstName: yup.string().min(1, "Required").max(100, "Max 100 characters"),
+  lastName: yup.string().min(1, "Required").max(100, "Max 100 characters"),
+  phone: yup
+    .string()
+    .required("Required")
+    .test("is-valid-phone", "Invalid phone number", (value) =>
+      value ? isValidPhoneNumber(value) : false
+    ),
+  email: yup.string().email("Invalid email").required("Required"),
+  message: yup.string().min(1, "Required").max(2000, "Max 2000 characters"),
+});
+
 // Export types
 export type MemberFormData = yup.InferType<typeof memberFormSchema>;
 export type CreateMemberRequest = yup.InferType<typeof createMemberRequestSchema>;
+export type ContactFormData = yup.InferType<typeof contactFormSchema>;
 export type ErrorResponse = yup.InferType<typeof errorResponseSchema>;

@@ -22,9 +22,33 @@
   --fontsize: 11px;
 }
 
+.text-base {
+  font-size: 15px;
+}
+
 .text-xs {
   font-size: 11px;
   line-height: 1rem;
+}
+
+.menu li > .link.link-hover:hover,
+.menu li > .link.link-hover:active,
+.menu li > details > summary:hover,
+.menu li > details > summary:active {
+  background-color: transparent;
+  color: inherit;
+  box-shadow: none;
+}
+
+.phone-input .PhoneInputInput {
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.phone-input .PhoneInputCountry {
+  margin-right: 0.5rem;
 }
 
 @theme {

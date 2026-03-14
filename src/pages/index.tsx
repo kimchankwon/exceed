@@ -33,7 +33,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Card 1 */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-10 px-8 pt-10 pb-28"
+        className="flex flex-col items-center justify-center gap-10 px-8 pt-14 pb-28"
       >
         <h1 className="max-w-3xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage1?.description?.description}
@@ -86,7 +86,9 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         <h1 className="max-w-xl text-center text-3xl font-extrabold sm:text-5xl">
           {landingPage4?.description?.description}
         </h1>
-        <p className="max-w-sm text-center text-xs">{landingPage4?.description2?.description2}</p>
+        <p className="max-w-sm text-center text-[12px]">
+          {landingPage4?.description2?.description2}
+        </p>
       </div>
       {/* Tutors Section - TODO Carousel */}
       <div data-header-theme="light" className="flex flex-col px-8 py-28">
