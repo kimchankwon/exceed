@@ -1,7 +1,7 @@
 import { graphql, type PageProps } from "gatsby";
 import * as React from "react";
-import MemberForm from "../components/MemberForm";
 import { GatsbyImage } from "gatsby-plugin-image";
+import FAQ from "../components/FAQ";
 
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data }) => {
   const {
@@ -12,7 +12,6 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
     landingPageTutors,
     landingPageTestimonials,
     landingPage6,
-    allContentfulFrequentlyAskedQuestions,
   } = data;
 
   return (
@@ -133,24 +132,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Carousel thing */}
       {/* TODO */}
       {/* FAQ Section */}
-      <div data-header-theme="light" className="flex flex-col px-8 pb-12">
-        <h1 className="max-w-60 text-2xl leading-6 font-extrabold">FREQUENTLY</h1>
-        <h1 className="max-w-60 text-2xl leading-6 font-extrabold">ASKED QUESTIONS</h1>
-      </div>
-      <div data-header-theme="light" className="flex flex-col items-end px-8 pb-12">
-        {allContentfulFrequentlyAskedQuestions.nodes.map((faq, index) => (
-          <div key={faq.id} className="w-full max-w-md">
-            <div className="collapse-arrow collapse">
-              <input type="checkbox" />
-              <div className="collapse-title text-md py-3 pl-0">{faq.question}</div>
-              <div className="collapse-content px-0 text-sm">{faq.answer?.answer}</div>
-            </div>
-            {index < allContentfulFrequentlyAskedQuestions.nodes.length - 1 && (
-              <div className="h-px bg-gray-300" />
-            )}
-          </div>
-        ))}
-      </div>
+      <FAQ />
       <div data-header-theme="light" className="bg-sky-soft mx-8 py-8">
         <h1 className="px-6 text-2xl font-extrabold">NEED GUIDANCE? LET'S CHAT.</h1>
       </div>
@@ -250,15 +232,5 @@ export const landingPageQuery = graphql`
         description
       }
     }
-    allContentfulFrequentlyAskedQuestions(sort: [{ order: ASC }]) {
-      nodes {
-        id
-        order
-        question
-        answer {
-          answer
-        }
-      }
-    }
-  }
+}
 `;
