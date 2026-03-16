@@ -4,7 +4,20 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import FAQ from "../components/FAQ";
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) => {
-  const { aboutTitle, about1, about2, about3, ourValues, value1, collaboration } = data;
+  const {
+    aboutTitle,
+    about1,
+    about2,
+    about3,
+    ourValues,
+    value1,
+    value2,
+    value3,
+    value4,
+    collaboration,
+  } = data;
+
+  const values = [value1, value2, value3, value4];
   return (
     <div>
       <div data-header-theme="light" className="px-8 pt-40 pb-16">
@@ -85,10 +98,28 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           )}
         </div>
         <div className="max-w-xs">
-          <p className="pb-4 text-2xl font-extrabold">01.</p>
-          <p className="max-w-44 pb-4 text-2xl leading-6 font-extrabold">{value1?.title}</p>
-          <p className="pb-4 text-base">{value1?.description?.description}</p>
-          <p className="pb-12 text-base">{value1?.description2?.description2}</p>
+          {values.map((value, i) =>
+            value ? (
+              <div className="collapse" key={value.id}>
+                <input
+                  type="radio"
+                  name="my-accordion-1"
+                  defaultChecked={i === 0}
+                  className="peer"
+                />
+                <div className="collapse-title text-secondary text-xl transition-all duration-200 peer-checked:text-2xl peer-checked:text-current">
+                  <p className="pb-4 font-extrabold">0{i + 1}.</p>
+                  <p className="max-w-36 pb-4 leading-6 font-extrabold transition-all duration-200 [.peer:checked~*_&]:max-w-44">
+                    {value?.title}
+                  </p>
+                </div>
+                <div className="collapse-content">
+                  <p className="pb-4 text-base">{value?.description?.description}</p>
+                  <p className="text-base">{value?.description2?.description2}</p>
+                </div>
+              </div>
+            ) : null
+          )}
         </div>
         {/* TODO: animation and other 3 values */}
       </div>
@@ -115,6 +146,9 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
         </div>
       </div>
       <FAQ />
+      <div data-header-theme="light" className="bg-sky-soft mx-8 py-8">
+        <h1 className="px-6 text-2xl font-extrabold">NEED GUIDANCE? LET'S CHAT.</h1>
+      </div>
     </div>
   );
 };
@@ -166,6 +200,37 @@ export const AboutPageQuery = graphql`
       }
     }
     value1: contentfulContentCard(title: { eq: "PLATFORM FOR GROWTH" }) {
+      id
+      title
+      description {
+        description
+      }
+      description2 {
+        description2
+      }
+    }
+    value2: contentfulContentCard(title: { eq: "HOLISTIC APPROACH" }) {
+      id
+      title
+      description {
+        description
+      }
+      description2 {
+        description2
+      }
+    }
+    value3: contentfulContentCard(title: { eq: "PERSONALISED TRAINING" }) {
+      id
+      title
+      description {
+        description
+      }
+      description2 {
+        description2
+      }
+    }
+    value4: contentfulContentCard(title: { eq: "OPTIMISED LEARNING" }) {
+      id
       title
       description {
         description
