@@ -97,7 +97,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
             />
           )}
         </div>
-        <div className="max-w-xs">
+        <div className="h-225 max-w-xs">
           {values.map((value, i) =>
             value ? (
               <div className="collapse" key={value.id}>
