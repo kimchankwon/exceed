@@ -46,6 +46,9 @@
 }
 
 @theme {
+  /* Display Large — 76px — Inter 800 — hero headings */
+  --text-display-lg: 76px;
+
   /* Display — 64px/1.05 — Inter 800 — hero headings */
   --text-display: 64px;
   --text-display--line-height: 1.05;

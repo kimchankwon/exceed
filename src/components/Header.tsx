@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <header
-      className={`navbar fixed top-0 right-0 left-0 z-50 transition-colors duration-0 sm:grid sm:min-w-full sm:grid-cols-[1fr_auto_1fr] sm:px-10 sm:py-8 ${isDark ? "text-white" : "text-black"}`}
+      className={`navbar fixed top-0 right-0 left-0 z-50 transition-colors duration-0 sm:grid sm:min-w-full sm:grid-cols-[1fr_auto_1fr] sm:px-12 sm:py-8 ${isDark ? "text-white" : "text-black"}`}
     >
       {/* Gradient backdrop blur overlay */}
       <div
