@@ -214,7 +214,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
 
       {/* Schools Collaboration */}
       <div data-header-theme="light" className="px-12 pb-28">
-        <h1 className="text-h4 max-w-xs pb-16 leading-none font-extrabold uppercase">
+        <h1 className="text-h4 max-w-lg pb-16 leading-none font-extrabold uppercase">
           {collaboration?.description?.description}
         </h1>
         <div className="grid grid-cols-2 gap-8 opacity-25 sm:grid-cols-5">
