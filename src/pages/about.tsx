@@ -68,8 +68,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
   return (
     <div className="bg-cream">
       {/* Hero Headline */}
-      <div data-header-theme="light" className="px-12 pt-40 pb-16">
-        <h1 className="sm:text-display max-w-5xl leading-none font-extrabold uppercase">
+      <div data-header-theme="light" className="px-12 pt-54 pb-24">
+        <h1 className="sm:text-display-lg max-w-5xl leading-none font-extrabold uppercase">
           {aboutTitle?.description?.description}
         </h1>
       </div>
@@ -108,12 +108,12 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
       </div>
 
       {/* Our Story */}
-      <div data-header-theme="light" className="bg-grey px-12 py-20">
+      <div data-header-theme="light" className="bg-grey px-12 pt-36 pb-40">
         <h1 className="sm:text-display text-h3 mb-20 w-xs leading-none font-extrabold uppercase">
           {about1?.title}
         </h1>
         {/* Row 1: text left, image right */}
-        <div className="mb-20 flex flex-col items-end gap-12">
+        <div className="mb-20 grid grid-cols-1 gap-8 sm:grid-cols-2">
           <p className="text-h5 max-w-173 font-medium">{about1?.description?.description}</p>
           {about1?.photo?.gatsbyImageData && (
             <GatsbyImage
@@ -124,7 +124,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           )}
         </div>
         {/* Row 2: image left, text right */}
-        <div className="mb-20 flex flex-col-reverse gap-8 sm:flex-row sm:justify-between">
+        <div className="mb-40 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:flex-row">
           {about2?.photo?.gatsbyImageData && (
             <GatsbyImage
               image={about2.photo.gatsbyImageData}
@@ -138,7 +138,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           </div>
         </div>
         {/* Large centered quote */}
-        <h1 className="sm:text-display text-h3 mx-auto max-w-5xl text-center leading-tight font-extrabold uppercase">
+        <h1 className="sm:text-display text-h3 leading-tighter mx-auto max-w-7xl text-center font-extrabold uppercase">
           {about3?.description?.description}
         </h1>
         <div className="flex justify-center">
@@ -146,15 +146,15 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
             <GatsbyImage
               image={about3.photo.gatsbyImageData}
               alt={about3.title || "Image"}
-              className="my-16 max-w-5xl rotate-3"
+              className="mt-32 max-w-7xl rotate-3"
             />
           )}
         </div>
       </div>
 
       {/* Our Values */}
-      <div data-header-theme="light" className="px-12 py-20">
-        <h1 className="sm:text-display text-h3 mb-12 max-w-xs leading-none font-extrabold uppercase">
+      <div data-header-theme="light" className="px-12 pt-38 pb-28">
+        <h1 className="sm:text-display text-h3 mb-12 max-w-xs font-extrabold uppercase">
           {ourValues?.title}
         </h1>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -181,7 +181,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
                     <p className="text-h5 [.peer:checked~*_&]:text-h4 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:pb-8">
                       0{i + 1}.
                     </p>
-                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-55 pb-6 leading-none font-extrabold uppercase transition-all duration-200">
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-55">
                       {value?.title}
                     </p>
                   </div>

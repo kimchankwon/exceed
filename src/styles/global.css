@@ -46,8 +46,8 @@
 }
 
 @theme {
-  /* Display Large — 76px — Inter 800 — hero headings */
-  --text-display-lg: 76px;
+  /* Display Large — 80px — Inter 800 — hero headings */
+  --text-display-lg: 80px;
 
   /* Display — 64px/1.05 — Inter 800 — hero headings */
   --text-display: 64px;
