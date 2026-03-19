@@ -63,9 +63,9 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Hero Headline + CTA */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-10 px-12 pt-14 pb-28"
+        className="flex flex-col items-center justify-center gap-10 px-12 pt-20 pb-40"
       >
-        <h1 className="sm:text-display text-h3 max-w-5xl text-center font-extrabold uppercase">
+        <h1 className="sm:text-display text-h3 max-w-6xl pb-10 text-center font-extrabold uppercase">
           {landingPage1?.description?.description}
         </h1>
         <Link to="/contact-us/" className="btn btn-primary rounded-full border-0 uppercase">
@@ -74,7 +74,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       </div>
 
       {/* Orange Section - Why Exceed + Our Approach */}
-      <div data-header-theme="dark" className="bg-base-200 relative overflow-hidden px-10 py-20">
+      <div data-header-theme="dark" className="bg-base-200 relative overflow-hidden px-12 py-20">
         {/* Why Exceed - Top */}
         <div className="flex flex-col justify-between gap-2 sm:flex-row">
           <div className="flex max-w-[513px] flex-col gap-1 text-white">
@@ -112,7 +112,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Fostering the Right Approach */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-5 px-10 pt-24 pb-12"
+        className="flex flex-col items-center justify-center gap-5 px-12 pt-24 pb-12"
       >
         <h1 className="sm:text-display max-w-3xl text-center text-4xl font-extrabold uppercase">
           {landingPage4?.description?.description}
@@ -123,18 +123,18 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Subject Tab Switcher + Cards */}
       <div data-header-theme="light" className="flex flex-col items-center px-12">
         {/* Tab Pills */}
-        <div className="relative flex pr-10">
+        <div className="relative flex">
           <button
-            className={`text-body relative z-10 rounded-full px-5 py-4 font-medium uppercase transition-colors ${
-              activeSubject === "maths" ? "bg-ink text-white" : "bg-grey text-ink"
+            className={`text-body relative z-10 rounded-full py-3 pl-5 font-medium uppercase transition-colors ${
+              activeSubject === "maths" ? "bg-ink pr-5 text-white" : "bg-grey text-ink z-10 pr-11"
             }`}
             onClick={() => setActiveSubject("maths")}
           >
             math
           </button>
           <button
-            className={`text-body -ml-10 rounded-full px-5 py-4 font-medium uppercase transition-colors ${
-              activeSubject === "english" ? "bg-ink text-white" : "bg-grey text-ink"
+            className={`text-body -ml-8 rounded-full py-3 pr-5 font-medium uppercase transition-colors ${
+              activeSubject === "english" ? "bg-ink z-10 pl-5 text-white" : "bg-grey text-ink pl-11"
             }`}
             onClick={() => setActiveSubject("english")}
           >
@@ -234,20 +234,23 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* "Our Strategy Works" */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-10 px-10 pt-38 pb-28"
+        className="flex flex-col items-center justify-center gap-10 px-12 pt-38 pb-28"
       >
         <h1 className="sm:text-display max-w-5xl text-center text-4xl font-extrabold uppercase">
           {landingPage6?.description?.description}
         </h1>
         <div className="flex gap-4">
-          <Link to="/about/" className="btn border-ink rounded-full border-2 bg-white uppercase">
+          <Link
+            to="/about/"
+            className="btn border-ink w-38 flex-1 rounded-full border-2 bg-white uppercase"
+          >
             about us
           </Link>
           <Link
             to="/contact-us/"
-            className="btn btn-primary rounded-full border-0 text-white uppercase"
+            className="btn btn-primary w-38 rounded-full border-0 text-white uppercase"
           >
-            Enquire now
+            enquire now
           </Link>
         </div>
       </div>
@@ -302,8 +305,8 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
 
       {/* Need Guidance CTA */}
       <div data-header-theme="light" className="sm:px-12">
-        <div className="bg-sky-soft px-10 py-12">
-          <h1 className="text-h4 max-w-[511px] font-extrabold uppercase">
+        <div className="bg-sky-soft px-12 py-12">
+          <h1 className="text-h4 max-w-127.75 font-extrabold uppercase">
             NEED GUIDANCE? LET&apos;S CHAT.
           </h1>
         </div>

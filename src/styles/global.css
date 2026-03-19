@@ -16,7 +16,7 @@
 .btn {
   --btn-border: var(--btn-bg);
   --fontsize: 16px;
-  font-weight: 400;
+  font-weight: 300;
   --btn-shadow: none;
   --btn-p: 1.25rem;
 }

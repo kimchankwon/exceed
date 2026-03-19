@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="bg-base-300 text-white/70">
       {/* Top Row: Logo + Newsletter */}
-      <div className="grid grid-cols-1 items-center gap-8 px-12 pt-8 pb-20 sm:grid-cols-2">
+      <div className="grid grid-cols-1 items-center gap-8 px-12 pt-10 pb-20 sm:grid-cols-2">
         <img
           src={logoFullWhite}
           alt="Exceed"

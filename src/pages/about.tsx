@@ -286,7 +286,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
 
       {/* Need Guidance CTA */}
       <div data-header-theme="light" className="sm:px-12">
-        <div className="bg-sky-soft px-10 py-12">
+        <div className="bg-sky-soft px-12 py-12">
           <h1 className="text-h4 max-w-127.75 font-extrabold uppercase">
             NEED GUIDANCE? LET&apos;S CHAT.
           </h1>
