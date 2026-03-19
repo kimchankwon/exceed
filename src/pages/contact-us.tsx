@@ -43,7 +43,7 @@ const ContactUsPage: React.FC<PageProps<Queries.ContactUsPageQueryQuery>> = ({ d
     <div>
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-5 px-8 pt-40 pb-28"
+        className="flex flex-col items-center justify-center gap-5 px-12 pt-40 pb-28"
       >
         <h1 className="text-center text-3xl font-extrabold sm:text-5xl">{contactUs?.title}</h1>
         <p className="max-w-sm text-center text-[12px]">{contactUs?.description?.description}</p>
@@ -58,7 +58,14 @@ const ContactUsPage: React.FC<PageProps<Queries.ContactUsPageQueryQuery>> = ({ d
           </div>
           <div>
             <Formik
-              initialValues={{ firstName: "", lastName: "", phone: "", email: "", message: "", website: "" }}
+              initialValues={{
+                firstName: "",
+                lastName: "",
+                phone: "",
+                email: "",
+                message: "",
+                website: "",
+              }}
               validationSchema={contactFormSchema}
               onSubmit={handleSubmit}
             >

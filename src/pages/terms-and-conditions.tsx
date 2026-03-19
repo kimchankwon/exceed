@@ -8,7 +8,7 @@ const TermsAndConditionsPage: React.FC<PageProps<Queries.TermsAndConditionsPageQ
 
   return (
     <div>
-      <div data-header-theme="light" className="flex flex-col gap-12 px-8 pt-36 pb-28">
+      <div data-header-theme="light" className="flex flex-col gap-12 px-12 pt-36 pb-28">
         <h1 className="items-self-start text-2xl font-extrabold text-black">
           {termsAndConditions?.title}
         </h1>

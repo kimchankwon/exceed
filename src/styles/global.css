@@ -15,7 +15,10 @@
 
 .btn {
   --btn-border: var(--btn-bg);
+  --fontsize: 16px;
+  font-weight: 400;
   --btn-shadow: none;
+  --btn-p: 1.25rem;
 }
 
 .btn-sm {
@@ -42,18 +45,11 @@
   margin-right: 0.5rem;
 }
 
-body {
-  font-family: var(--font-body);
-}
-
 @theme {
-  /* Font Families */
-  --font-display: "Inter Variable", "Inter", sans-serif;
-  --font-body: "Work Sans Variable", "Work Sans", sans-serif;
-
   /* Display — 64px/1.05 — Inter 800 — hero headings */
   --text-display: 64px;
   --text-display--line-height: 1.05;
+  --text-display--letter-spacing: 0.03em;
 
   /* Stat — 120px/1 — Inter 800 — stats counter */
   --text-stat: 120px;
@@ -80,7 +76,7 @@ body {
   --text-body--line-height: 1.25;
 
   /* Navigation — 14px/1 — Inter 500 — nav links */
-  --text-nav: 14px;
+  --text-nav: 16px;
   --text-nav--line-height: 1;
 
   /* Colors */

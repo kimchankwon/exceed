@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <header
-      className={`navbar fixed top-0 right-0 left-0 z-10 grid w-full min-w-full grid-cols-[1fr_auto_1fr] py-0 pr-4 pl-0 transition-colors duration-0 sm:px-8 sm:py-6 ${isDark ? "text-white" : "text-black"}`}
+      className={`navbar fixed top-0 right-0 left-0 z-50 transition-colors duration-0 sm:grid sm:min-w-full sm:grid-cols-[1fr_auto_1fr] sm:px-10 sm:py-8 ${isDark ? "text-white" : "text-black"}`}
     >
       {/* Gradient backdrop blur overlay */}
       <div
@@ -118,11 +118,11 @@ const Header = () => {
           </ul>
         </div>
         <Link to="/" className="link shrink-0">
-          <img src={isDark ? logoWhite : logoBlack} alt="Exceed" className="h-8" />
+          <img src={isDark ? logoWhite : logoBlack} alt="Exceed" className="w-32 sm:w-48" />
         </Link>
       </div>
       <div className="navbar-center relative z-1 hidden justify-center gap-8 sm:block">
-        <ul className="menu menu-horizontal gap-5 px-1">
+        <ul className="menu menu-horizontal gap-10 px-1">
           {header?.links?.map((link) => {
             if (link && "links" in link && link.links) {
               return (
@@ -160,14 +160,14 @@ const Header = () => {
         </ul>
       </div>
       <div className="relative z-1 flex sm:hidden"></div>
-      <div className="navbar-end relative z-1 justify-self-end">
+      <div className="navbar-end z-1 justify-self-end">
         {header?.buttons?.map((button) =>
           button ? (
             <Link
               key={button.id}
               to={button.url ?? ""}
               className={
-                "btn btn-sm rounded-full border font-light" +
+                "btn btn-primary rounded-full" +
                 (isDark
                   ? " border-white bg-transparent text-white"
                   : " border-base-200 btn-primary")

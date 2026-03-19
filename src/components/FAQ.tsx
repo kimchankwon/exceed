@@ -20,20 +20,19 @@ const FAQ = () => {
 
   return (
     <>
-      <div data-header-theme="light" className="flex flex-col px-8 pb-12">
-        <h1 className="max-w-[230px] text-2xl leading-6 font-extrabold">
-          FREQUENTLY ASKED QUESTIONS
-        </h1>
+      <div data-header-theme="light" className="flex flex-col px-12 pb-12">
+        <h1 className="text-h4 max-w-78 font-extrabold">FREQUENTLY ASKED QUESTIONS</h1>
       </div>
-      <div data-header-theme="light" className="flex flex-col items-end px-8 pb-12">
+      <div data-header-theme="light" className="flex flex-col items-end px-12 pb-12">
         {allContentfulFrequentlyAskedQuestions.nodes.map((faq, index) => (
-          <div key={faq.id} className="w-full max-w-md">
+          <div key={faq.id} className="w-full max-w-178">
+            <div className="h-px bg-gray-300" />
             <div className="collapse-arrow collapse">
               <input type="checkbox" />
-              <div className="collapse-title text-md py-3 pl-0">{faq.question}</div>
-              <div className="collapse-content px-0 text-sm">{faq.answer?.answer}</div>
+              <div className="collapse-title text-h5 py-4 pl-0">{faq.question}</div>
+              <div className="collapse-content text-body-lg px-0">{faq.answer?.answer}</div>
             </div>
-            {index < allContentfulFrequentlyAskedQuestions.nodes.length - 1 && (
+            {index === allContentfulFrequentlyAskedQuestions.nodes.length - 1 && (
               <div className="h-px bg-gray-300" />
             )}
           </div>

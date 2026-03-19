@@ -5,11 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
 // --- Types ---
-type CourseId =
-  | "standard-maths"
-  | "maths-advanced"
-  | "maths-extension-1"
-  | "maths-extension-2";
+type CourseId = "standard-maths" | "maths-advanced" | "maths-extension-1" | "maths-extension-2";
 type ClassTypeId = "school-specific" | "all-schools";
 
 interface ClassEventExtended {
@@ -119,7 +115,7 @@ function renderEventContent(eventInfo: {
 }) {
   const { classCount } = eventInfo.event.extendedProps;
   return (
-    <div className="overflow-hidden p-1 text-xs font-bold leading-tight text-white">
+    <div className="overflow-hidden p-1 text-xs leading-tight font-bold text-white">
       <div>{eventInfo.timeText}</div>
       <div>{eventInfo.event.title}</div>
       {classCount && <div>{classCount} CLASSES</div>}
@@ -128,13 +124,7 @@ function renderEventContent(eventInfo: {
 }
 
 // --- Collapsible Filter Section ---
-function FilterSection({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function FilterSection({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(true);
   return (
     <div className="mb-4">
@@ -198,7 +188,7 @@ const SchedulePage: React.FC = () => {
   return (
     <div data-header-theme="light" className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 shrink-0 overflow-y-auto bg-gray-100 px-6 pb-8 pt-40">
+      <aside className="w-64 shrink-0 overflow-y-auto bg-gray-100 px-6 pt-40 pb-8">
         <FilterSection title="Year">
           {YEARS.map((year) => (
             <label key={year} className="flex cursor-pointer items-center gap-3 text-sm">
@@ -248,7 +238,7 @@ const SchedulePage: React.FC = () => {
       </aside>
 
       {/* Calendar */}
-      <main className="flex-1 px-8 pb-8 pt-36">
+      <main className="flex-1 px-12 pt-36 pb-8">
         {/* View toggle */}
         <div className="mb-4 flex gap-2">
           <button

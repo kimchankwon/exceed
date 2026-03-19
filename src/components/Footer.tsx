@@ -25,28 +25,28 @@ const Footer = () => {
   `);
   const footerItems = data.allContentfulFooter.nodes;
   return (
-    <footer className="bg-base-300 text-xs text-white/55">
+    <footer className="bg-base-300 text-white/70">
       {/* Top Row: Logo + Newsletter */}
-      <div className="grid grid-cols-1 items-center gap-6 px-8 pt-6 pb-12 sm:grid-cols-2">
+      <div className="grid grid-cols-1 items-center gap-8 px-12 pt-8 pb-20 sm:grid-cols-2">
         <img
           src={logoFullWhite}
           alt="Exceed"
-          className="h-7 justify-self-center sm:justify-self-start"
+          className="w-48 justify-self-center sm:justify-self-start"
         />
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <input
             type="email"
             placeholder="Email address"
-            className="flex-1 rounded-md bg-white/20 px-2.5 py-2 text-xs text-white placeholder-white/40 focus:outline-none"
+            className="text-body flex-1 rounded-md bg-white/20 px-4 py-3.5 text-white placeholder-white/40 focus:outline-none"
           />
-          <button className="btn btn-sm rounded-full border-0 bg-white p-4">SUBSCRIBE</button>
+          <button className="btn rounded-full border-0 bg-white px-7">SUBSCRIBE</button>
         </div>
       </div>
       {/* Link Columns */}
-      <div className="grid grid-cols-2 gap-8 px-8 pb-10 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-8 px-12 pb-32 sm:grid-cols-4">
         {footerItems.map((f) => (
           <nav key={f.id} className="flex flex-col items-start gap-1">
-            <p className="text-white/70">{f.title}</p>
+            <p className="text-white/80">{f.title}</p>
             {f.links?.map((link, i) =>
               link ? (
                 <Link
@@ -75,7 +75,7 @@ const Footer = () => {
         ))}
         {/* TODO Socials in footer */}
         <nav className="flex flex-col items-start gap-1">
-          <p className="pb-4 text-white/70">Socials</p>
+          <p className="pb-4 text-white/80">Socials</p>
           <div className="flex gap-4">
             <a
               href="https://facebook.com"
@@ -124,8 +124,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mx-8 border-t border-white/20" />
-      <div className="flex items-center justify-between px-8 pt-4 pb-6">
+      <div className="mx-12 border-t border-white/20" />
+      <div className="flex items-center justify-between px-12 pt-6 pb-8">
         <span>EXCEED Education&copy; 2026. All rights reserved.</span>
         <Link to="/terms-and-conditions" className="link link-hover">
           Terms &amp; Conditions

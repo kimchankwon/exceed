@@ -1,7 +1,22 @@
 import * as React from "react";
-import { graphql, PageProps } from "gatsby";
+import { graphql, Link, PageProps } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import FAQ from "../components/FAQ";
+
+const MOCK_TESTIMONIAL = {
+  quote:
+    '"The tutoring was clear, supportive, and tailored to my needs. I gained confidence in the subject and saw real improvement in my results. Highly recommend!"',
+  name: "– John Smith",
+  school: "Carlingford Boys High School",
+  year: "Graduated 2023",
+};
+
+const MOCK_TUTORS = [
+  { id: "1", name: "Sarah Chen", role: "Founder" },
+  { id: "2", name: "James Park", role: "Co-founder" },
+  { id: "3", name: "Emily Wang", role: "English Tutor" },
+  { id: "4", name: "Michael Liu", role: "Maths Tutor" },
+];
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) => {
   const {
@@ -18,11 +33,17 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
   } = data;
 
   const values = [value1, value2, value3, value4];
+
   return (
-    <div>
-      <div data-header-theme="light" className="px-8 pt-40 pb-16">
-        <p className="max-w-3xl text-6xl font-extrabold">{aboutTitle?.description?.description}</p>
+    <div className="bg-cream">
+      {/* Hero Headline */}
+      <div data-header-theme="light" className="px-12 pt-40 pb-16">
+        <h1 className="sm:text-display text-h3 max-w-5xl leading-none font-extrabold uppercase">
+          {aboutTitle?.description?.description}
+        </h1>
       </div>
+
+      {/* Video Section */}
       <div
         data-header-theme="dark"
         className="relative aspect-video w-full overflow-hidden bg-black"
@@ -34,120 +55,195 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           allow="autoplay; fullscreen"
           style={{ border: 0 }}
         />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <button className="btn btn-primary rounded-full border-0 uppercase">play video</button>
+        </div>
       </div>
-      <div data-header-theme="light" className="bg-secondary flex flex-col px-8 pt-24 pb-12">
-        <h1 className="max-w-60 text-5xl font-extrabold">{about1?.title}</h1>
-      </div>
-      <div
-        data-header-theme="light"
-        className="bg-secondary grid grid-cols-1 gap-8 px-8 pb-12 sm:grid-cols-2"
-      >
-        <div></div>
-        <div>
-          <p className="pb-12 text-lg font-semibold">{about1?.description?.description}</p>
+
+      {/* Our Story */}
+      <div data-header-theme="light" className="bg-grey px-12 py-20">
+        <h1 className="sm:text-display text-h3 mb-20 leading-none font-extrabold uppercase">
+          {about1?.title}
+        </h1>
+        {/* Row 1: text left, image right */}
+        <div className="mb-20 flex flex-col gap-8 sm:flex-row sm:justify-between">
+          <p className="text-body-lg max-w-128.25 font-medium">
+            {about1?.description?.description}
+          </p>
           {about1?.photo?.gatsbyImageData && (
             <GatsbyImage
               image={about1.photo.gatsbyImageData}
               alt={about1.title || "Image"}
-              className="w-full justify-self-end"
+              className="max-h-184.75 max-w-173"
             />
           )}
         </div>
-      </div>
-      <div
-        data-header-theme="light"
-        className="bg-secondary grid grid-cols-1 gap-8 px-8 pb-28 sm:grid-cols-2"
-      >
-        <div className="max-w-72 text-sm sm:order-2">
-          <p className="pb-4">{about2?.description?.description}</p>
-          <p className="pb-8">{about2?.description2?.description2}</p>
-        </div>
-        <div className="flex justify-start">
+        {/* Row 2: image left, text right */}
+        <div className="mb-20 flex flex-col-reverse gap-8 sm:flex-row sm:justify-between">
           {about2?.photo?.gatsbyImageData && (
             <GatsbyImage
               image={about2.photo.gatsbyImageData}
               alt={about2.title || "Image"}
-              className="max-w-md sm:order-1"
+              className="max-h-184.75 max-w-127.75"
             />
           )}
+          <div className="text-body-lg max-w-116.5">
+            <p className="mb-4">{about2?.description?.description}</p>
+            <p>{about2?.description2?.description2}</p>
+          </div>
         </div>
-      </div>
-      <div data-header-theme="light" className="bg-secondary flex flex-col items-center pb-12">
-        <h1 className="max-w-4xl pb-8 text-center text-3xl font-extrabold sm:text-5xl">
+        {/* Large centered quote */}
+        <h1 className="sm:text-display text-h3 mx-auto max-w-5xl text-center leading-tight font-extrabold uppercase">
           {about3?.description?.description}
         </h1>
         {about3?.photo?.gatsbyImageData && (
           <GatsbyImage
             image={about3.photo.gatsbyImageData}
             alt={about3.title || "Image"}
-            className="mx-6 my-16 max-w-5xl rotate-3"
+            className="mx-auto my-16 max-w-5xl rotate-3"
           />
         )}
       </div>
-      <div data-header-theme="light" className="flex flex-col px-8 pt-24 pb-12">
-        <h1 className="max-w-60 text-5xl font-extrabold">{ourValues?.title}</h1>
-      </div>
-      <div data-header-theme="light" className="grid grid-cols-1 gap-8 px-8 pb-20 sm:grid-cols-2">
-        <div>
-          {ourValues?.photo?.gatsbyImageData && (
-            <GatsbyImage
-              image={ourValues.photo.gatsbyImageData}
-              alt={ourValues.title || "Image"}
-              className="max-w-sm"
-            />
-          )}
+
+      {/* Our Values */}
+      <div data-header-theme="light" className="px-12 py-20">
+        <h1 className="sm:text-display text-h3 mb-12 max-w-xs leading-none font-extrabold uppercase">
+          {ourValues?.title}
+        </h1>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div>
+            {ourValues?.photo?.gatsbyImageData && (
+              <GatsbyImage
+                image={ourValues.photo.gatsbyImageData}
+                alt={ourValues.title || "Image"}
+                className="max-w-sm"
+              />
+            )}
+          </div>
+          <div className="flex flex-col gap-8">
+            {values.map((value, i) =>
+              value ? (
+                <div className="collapse" key={value.id}>
+                  <input
+                    type="radio"
+                    name="my-accordion-1"
+                    defaultChecked={i === 0}
+                    className="peer"
+                  />
+                  <div className="collapse-title text-ink/25 peer-checked:text-ink p-0 pb-4 transition-all duration-200">
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:pb-8">
+                      0{i + 1}.
+                    </p>
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-55 pb-6 leading-none font-extrabold uppercase">
+                      {value?.title}
+                    </p>
+                  </div>
+                  <div className="collapse-content max-w-md px-0">
+                    <p className="text-body-lg pb-4">{value?.description?.description}</p>
+                    <p className="text-body-lg">{value?.description2?.description2}</p>
+                  </div>
+                </div>
+              ) : null
+            )}
+          </div>
         </div>
-        <div className="h-225 max-w-xs">
-          {values.map((value, i) =>
-            value ? (
-              <div className="collapse" key={value.id}>
-                <input
-                  type="radio"
-                  name="my-accordion-1"
-                  defaultChecked={i === 0}
-                  className="peer"
-                />
-                <div className="collapse-title text-secondary text-xl transition-all duration-200 peer-checked:text-2xl peer-checked:text-current">
-                  <p className="pb-4 font-extrabold">0{i + 1}.</p>
-                  <p className="max-w-36 pb-4 leading-6 font-extrabold transition-all duration-200 [.peer:checked~*_&]:max-w-44">
-                    {value?.title}
-                  </p>
-                </div>
-                <div className="collapse-content">
-                  <p className="pb-4 text-base">{value?.description?.description}</p>
-                  <p className="text-base">{value?.description2?.description2}</p>
-                </div>
+      </div>
+
+      {/* Testimonials */}
+      <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 py-32">
+        <h1 className="sm:text-display max-w-5xl pb-20 text-center text-4xl font-extrabold text-white uppercase">
+          Our students&apos; achievements are the true measure of our impact.
+        </h1>
+        <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="bg-peach flex h-110 flex-col justify-between p-6">
+            <p className="text-h4 overflow-hidden font-extrabold text-white uppercase">
+              {MOCK_TESTIMONIAL.quote}
+            </p>
+            <div>
+              <p className="text-h4 font-extrabold text-white uppercase">{MOCK_TESTIMONIAL.name}</p>
+              <p className="text-body mt-2 font-medium text-white">{MOCK_TESTIMONIAL.school}</p>
+              <p className="text-body text-white">{MOCK_TESTIMONIAL.year}</p>
+            </div>
+          </div>
+          <div className="flex h-110 items-center justify-center bg-gray-600">
+            <span className="text-white/30">Testimonial Image</span>
+          </div>
+          <div className="flex h-151.25 items-center justify-center bg-gray-500">
+            <span className="text-white/30">Testimonial Image</span>
+          </div>
+          <div className="flex h-151.5 items-center justify-center bg-gray-400">
+            <span className="text-white/30">Testimonial Image</span>
+          </div>
+        </div>
+        <Link
+          to="/"
+          className="btn btn-outline mt-20 rounded-full border-white text-white uppercase hover:bg-black"
+        >
+          load more
+        </Link>
+      </div>
+
+      {/* Our Team */}
+      <div data-header-theme="light" className="px-12 py-20">
+        <h1 className="sm:text-display text-h3 mb-10 leading-none font-extrabold uppercase">
+          Our
+          <br />
+          Team
+        </h1>
+        <div className="mb-10 flex flex-col gap-8 sm:flex-row sm:justify-between">
+          <div />
+          <p className="text-h5 max-w-136 font-medium">
+            Meet our dedicated teachers guiding every student with clarity and confidence.
+          </p>
+        </div>
+        <div className="mb-10 grid w-full grid-cols-2 gap-8 sm:grid-cols-4">
+          {MOCK_TUTORS.map((tutor) => (
+            <div key={tutor.id} className="flex flex-col gap-8">
+              <div className="h-110 bg-gray-300" />
+              <div>
+                <p className="text-body font-extrabold uppercase">{tutor.name}</p>
+                <p className="text-body text-ink/50">{tutor.role}</p>
               </div>
-            ) : null
-          )}
+            </div>
+          ))}
         </div>
-        {/* TODO: animation and other 3 values */}
+        <div className="flex justify-center">
+          <button className="btn bg-ink/10 text-navy rounded-full uppercase">load more</button>
+        </div>
       </div>
-      {/* TODO: OUR TEAM */}
-      {/* TOP SCHOOLS */}
-      <div data-header-theme="light" className="px-8">
-        <h1 className="max-w-sm pb-16 text-2xl leading-6 font-extrabold">
+
+      {/* Schools Collaboration */}
+      <div data-header-theme="light" className="px-12 pb-28">
+        <h1 className="text-h4 max-w-xs pb-16 leading-none font-extrabold uppercase">
           {collaboration?.description?.description}
         </h1>
-        <div className="xs:grid-cols-2 grid gap-8 pb-28 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-8 opacity-25 sm:grid-cols-5">
           {collaboration?.photos?.map((photo, index) => (
-            <div key={index} className="flex flex-col items-center gap-3 pb-4">
+            <div key={index} className="flex flex-col items-center gap-4">
               {photo?.gatsbyImageData && (
                 <GatsbyImage
                   image={photo.gatsbyImageData}
                   alt={`Collaboration ${index + 1}`}
-                  className="h-20"
+                  className="h-28"
                   objectFit="contain"
                 />
               )}
-              <p className="text-[12px] text-gray-400">{photo?.title}</p>
+              <p className="text-body text-center font-medium text-black">{photo?.title}</p>
             </div>
           ))}
         </div>
       </div>
+
+      {/* FAQ */}
       <FAQ />
-      <div data-header-theme="light" className="bg-sky-soft mx-8 py-8">
-        <h1 className="px-6 text-2xl font-extrabold">NEED GUIDANCE? LET'S CHAT.</h1>
+
+      {/* Need Guidance CTA */}
+      <div data-header-theme="light" className="sm:px-12">
+        <div className="bg-sky-soft px-10 py-12">
+          <h1 className="text-h4 max-w-127.75 font-extrabold uppercase">
+            NEED GUIDANCE? LET&apos;S CHAT.
+          </h1>
+        </div>
       </div>
     </div>
   );
