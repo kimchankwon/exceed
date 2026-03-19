@@ -79,8 +79,8 @@ body {
   --text-body: 16px;
   --text-body--line-height: 1.25;
 
-  /* Navigation — 16px/1 — Inter 500 — nav links */
-  --text-nav: 12px;
+  /* Navigation — 14px/1 — Inter 500 — nav links */
+  --text-nav: 14px;
   --text-nav--line-height: 1;
 
   /* Colors */

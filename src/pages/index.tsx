@@ -70,7 +70,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         </h1>
         <Link
           to="/contact-us/"
-          className="btn btn-sm btn-primary font-display rounded-full border-0 font-light uppercase"
+          className="btn btn-primary font-display rounded-full border-0 px-5 font-normal uppercase"
         >
           CONTACT US
         </Link>

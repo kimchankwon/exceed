@@ -45,7 +45,7 @@ const Header = () => {
 
   return (
     <header
-      className={`navbar text-nav fixed top-0 right-0 left-0 z-10 grid w-full min-w-full grid-cols-[1fr_auto_1fr] py-0 pr-4 pl-0 transition-colors duration-0 sm:h-18 sm:px-8 ${isDark ? "text-white" : "text-black"}`}
+      className={`navbar fixed top-0 right-0 left-0 z-10 grid w-full min-w-full grid-cols-[1fr_auto_1fr] py-0 pr-4 pl-0 transition-colors duration-0 sm:px-8 sm:py-6 ${isDark ? "text-white" : "text-black"}`}
     >
       {/* Gradient backdrop blur overlay */}
       <div
@@ -84,14 +84,16 @@ const Header = () => {
                 return (
                   <li key={link.id}>
                     <details>
-                      <summary className="text-xs">{link.title}</summary>
+                      <summary className="text-nav">{link.title}</summary>
                       <ul className="p-2">
                         {link.links?.map((l, i) =>
                           l ? (
                             <li key={l.id}>
                               <Link
                                 to={l.url ?? ""}
-                                className={"link link-hover text-xs" + (i % 3 === 0 ? " pt-3" : "")}
+                                className={
+                                  "link link-hover text-nav" + (i % 3 === 0 ? " pt-3" : "")
+                                }
                               >
                                 {l.title}
                               </Link>
@@ -106,7 +108,7 @@ const Header = () => {
               if (link && "url" in link) {
                 return (
                   <li key={link.id}>
-                    <Link className="link link-hover text-xs" to={link.url ?? ""}>
+                    <Link className="link link-hover text-nav" to={link.url ?? ""}>
                       {link.title}
                     </Link>
                   </li>
@@ -116,24 +118,24 @@ const Header = () => {
           </ul>
         </div>
         <Link to="/" className="link shrink-0">
-          <img src={isDark ? logoWhite : logoBlack} alt="Exceed" className="h-7" />
+          <img src={isDark ? logoWhite : logoBlack} alt="Exceed" className="h-8" />
         </Link>
       </div>
       <div className="navbar-center relative z-1 hidden justify-center gap-8 sm:block">
-        <ul className="menu menu-horizontal gap-4 px-1">
+        <ul className="menu menu-horizontal gap-5 px-1">
           {header?.links?.map((link) => {
             if (link && "links" in link && link.links) {
               return (
                 <li key={link.id}>
                   <details>
-                    <summary className="text-xs">{link.title?.toUpperCase()}</summary>
+                    <summary className="text-nav">{link.title?.toUpperCase()}</summary>
                     <ul className="w-36 p-2 text-black">
                       {link.links?.map((l, i) =>
                         l ? (
                           <li key={l.id}>
                             <Link
                               to={l.url ?? ""}
-                              className={"link link-hover text-xs" + (i % 3 === 2 ? " pb-3" : "")}
+                              className={"link link-hover text-nav" + (i % 3 === 2 ? " pb-3" : "")}
                             >
                               {l.title}
                             </Link>
@@ -148,7 +150,7 @@ const Header = () => {
             if (link && "url" in link) {
               return (
                 <li key={link.id}>
-                  <Link className="link link-hover text-xs" to={link.url ?? ""}>
+                  <Link className="link link-hover text-nav" to={link.url ?? ""}>
                     {link.title?.toUpperCase()}
                   </Link>
                 </li>
