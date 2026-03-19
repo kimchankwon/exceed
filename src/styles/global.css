@@ -22,15 +22,6 @@
   --fontsize: 11px;
 }
 
-.text-base {
-  font-size: 15px;
-}
-
-.text-xs {
-  font-size: 11px;
-  line-height: 1rem;
-}
-
 .menu li > .link.link-hover:hover,
 .menu li > .link.link-hover:active,
 .menu li > details > summary:hover,
@@ -51,7 +42,53 @@
   margin-right: 0.5rem;
 }
 
+body {
+  font-family: var(--font-body);
+}
+
 @theme {
+  /* Font Families */
+  --font-display: "Inter Variable", "Inter", sans-serif;
+  --font-body: "Work Sans Variable", "Work Sans", sans-serif;
+
+  /* Display — 64px/1.05 — Inter 800 — hero headings */
+  --text-display: 64px;
+  --text-display--line-height: 1.05;
+
+  /* Stat — 120px/1 — Inter 800 — stats counter */
+  --text-stat: 120px;
+  --text-stat--line-height: 1;
+
+  /* H3 — 40px/1.1 — Inter 500 — section headings */
+  --text-h3: 40px;
+  --text-h3--line-height: 1.1;
+
+  /* H4 — 32px/1 — Inter 800 — sub-headings */
+  --text-h4: 32px;
+  --text-h4--line-height: 1;
+
+  /* H5 — 24px/1 — Inter 500 — card titles, FAQ questions */
+  --text-h5: 24px;
+  --text-h5--line-height: 1;
+
+  /* Body Large — 20px/1.25 — Work Sans 500 */
+  --text-body-lg: 20px;
+  --text-body-lg--line-height: 1.25;
+
+  /* Body — 16px/1.25 — Work Sans 400 — paragraphs, buttons */
+  --text-body: 16px;
+  --text-body--line-height: 1.25;
+
+  /* Navigation — 16px/1 — Inter 500 — nav links */
+  --text-nav: 12px;
+  --text-nav--line-height: 1;
+
+  /* Colors */
+  --color-ink: #0d0d0d;
+  --color-navy: #061625;
+  --color-grey: #e6e6e6;
+  --color-peach: #ff9e64;
+  --color-cream: #fafaf8;
   --color-sky-soft: #c9e0f3;
   --color-light-gray: #ced0d3;
 }

@@ -123,7 +123,6 @@ const Footer = () => {
         </nav>
       </div>
 
-      {/* TODO Bottom Bar */}
       {/* Bottom Bar */}
       <div className="mx-8 border-t border-white/20" />
       <div className="flex items-center justify-between px-8 pt-4 pb-6">
