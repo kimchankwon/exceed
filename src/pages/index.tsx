@@ -65,7 +65,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         data-header-theme="light"
         className="flex flex-col items-center justify-center gap-10 px-12 pt-14 pb-28"
       >
-        <h1 className="font-display sm:text-display text-h3 text-center font-extrabold uppercase">
+        <h1 className="font-display sm:text-display text-h3 max-w-5xl text-center font-extrabold uppercase">
           {landingPage1?.description?.description}
         </h1>
         <Link
