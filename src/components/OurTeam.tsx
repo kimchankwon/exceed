@@ -30,6 +30,8 @@ const OurTeam = ({ variant = "preview" }: OurTeamProps) => {
   const { contentfulContentCard } = data;
   const isFull = variant === "full";
 
+  // TODO: waiting for copy
+
   return (
     <div data-header-theme="light" id="our-team" className="flex flex-col gap-16 px-12 pt-42 pb-38">
       {isFull ? (

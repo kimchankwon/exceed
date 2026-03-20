@@ -124,7 +124,7 @@ const Header = () => {
                 <li key={link.id}>
                   <details>
                     <summary className="text-nav">{link.title?.toUpperCase()}</summary>
-                    <ul className="w-36 p-2 text-black">
+                    <ul className="w-44 p-2 text-black">
                       {link.links?.map((l, i) =>
                         l ? (
                           <li key={l.id}>

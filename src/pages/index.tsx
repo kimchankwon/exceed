@@ -5,6 +5,7 @@ import FAQ from "../components/FAQ";
 import NeedGuidance from "../components/NeedGuidance";
 import OurTeam from "../components/OurTeam";
 import Testimonials from "../components/Testimonials";
+import SubjectTabSwitcher from "../components/SubjectTabSwitcher";
 
 const MOCK_SUBJECTS = {
   english: {
@@ -109,24 +110,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Subject Tab Switcher + Cards */}
       <div data-header-theme="light" className="flex flex-col items-center px-12">
         {/* Tab Pills */}
-        <div className="relative flex pb-5">
-          <button
-            className={`text-body relative z-10 rounded-full py-3 pl-5 font-medium uppercase transition-colors ${
-              activeSubject === "maths" ? "bg-ink pr-5 text-white" : "bg-grey text-ink z-10 pr-11"
-            }`}
-            onClick={() => setActiveSubject("maths")}
-          >
-            math
-          </button>
-          <button
-            className={`text-body -ml-8 rounded-full py-3 pr-5 font-medium uppercase transition-colors ${
-              activeSubject === "english" ? "bg-ink z-10 pl-5 text-white" : "bg-grey text-ink pl-11"
-            }`}
-            onClick={() => setActiveSubject("english")}
-          >
-            english
-          </button>
-        </div>
+        <SubjectTabSwitcher activeSubject={activeSubject} onSubjectChange={setActiveSubject} />
 
         {/* Subject Card */}
         {/* TODO */}

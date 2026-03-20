@@ -4,6 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+import SubjectTabSwitcher from "../components/SubjectTabSwitcher";
 
 // --- Types ---
 type Subject = "maths" | "english";
@@ -508,13 +509,17 @@ function getMockEvents(): ClassEvent[] {
 // --- Event Content Renderer ---
 function renderEventContent(eventInfo: {
   timeText: string;
+  view: { type: string };
   event: { title: string; extendedProps: ClassEventExtended };
 }) {
+  if (eventInfo.view.type === "dayGridMonth") {
+    return true;
+  }
   const { classCount } = eventInfo.event.extendedProps;
   return (
     <div className="overflow-hidden px-2 py-1 text-xs leading-tight text-black">
       <p className="font-medium">{eventInfo.timeText}</p>
-      <p className="py-2 font-bold">{eventInfo.event.title}</p>
+      <p className={`font-bold ${eventInfo.timeText ? "py-2" : ""}`}>{eventInfo.event.title}</p>
       {classCount && <p className="font-medium">{classCount} CLASSES</p>}
     </div>
   );
@@ -616,37 +621,20 @@ const SchedulePage: React.FC = () => {
       </div>
 
       {/* Subject Tab Switcher */}
-      <div data-header-theme="light" className="flex flex-col items-center px-12">
-        <div className="relative flex pb-5">
-          <button
-            className={`text-body relative z-10 rounded-full py-3 pl-5 font-medium uppercase transition-colors ${
-              activeSubject === "maths" ? "bg-ink pr-5 text-white" : "bg-grey text-ink z-10 pr-11"
-            }`}
-            onClick={() => setActiveSubject("maths")}
-          >
-            math
-          </button>
-          <button
-            className={`text-body -ml-8 rounded-full py-3 pr-5 font-medium uppercase transition-colors ${
-              activeSubject === "english" ? "bg-ink z-10 pl-5 text-white" : "bg-grey text-ink pl-11"
-            }`}
-            onClick={() => setActiveSubject("english")}
-          >
-            english
-          </button>
-        </div>
+      <div data-header-theme="light" className="flex flex-col items-center">
+        <SubjectTabSwitcher activeSubject={activeSubject} onSubjectChange={setActiveSubject} />
       </div>
-      <div data-header-theme="light" className="p-12">
+      <div data-header-theme="light" className="sm:p-12">
         {/* Sidebar + Calendar */}
-        <div className="flex rounded-full bg-gray-100">
+        <div className="flex flex-col sm:flex-row">
           {/* Sidebar */}
-          <aside className="w-64 shrink-0 bg-gray-100 px-6 pt-8 pb-8">
+          <aside className="shrink-0 bg-gray-100 pr-0 sm:w-56 sm:rounded-l-2xl sm:p-8">
             <FilterSection title="Year">
               {YEARS.map((year) => (
                 <label key={year} className="flex cursor-pointer items-center gap-3 text-sm">
                   <input
                     type="checkbox"
-                    className="h-4 w-4"
+                    className="h-4 w-4 cursor-pointer"
                     checked={selectedYears.includes(year)}
                     onChange={() => setSelectedYears((prev) => toggleItem(prev, year))}
                   />
@@ -662,7 +650,7 @@ const SchedulePage: React.FC = () => {
                 <label key={ct.id} className="flex cursor-pointer items-center gap-3 text-sm">
                   <input
                     type="checkbox"
-                    className="h-4 w-4"
+                    className="h-4 w-4 cursor-pointer"
                     checked={selectedClassTypes.includes(ct.id)}
                     onChange={() => setSelectedClassTypes((prev) => toggleItem(prev, ct.id))}
                   />
@@ -678,7 +666,7 @@ const SchedulePage: React.FC = () => {
                 <label key={course} className="flex cursor-pointer items-center gap-3 text-sm">
                   <input
                     type="checkbox"
-                    className="h-4 w-4"
+                    className="h-4 w-4 cursor-pointer"
                     style={{ accentColor: COURSE_COLORS[course] }}
                     checked={selectedCourses.includes(course)}
                     onChange={() => setSelectedCourses((prev) => toggleItem(prev, course))}
@@ -690,38 +678,60 @@ const SchedulePage: React.FC = () => {
           </aside>
 
           {/* Calendar */}
-          <main className="flex-1 bg-gray-100 px-12 pt-8 pb-8">
-            {/* View toggle */}
-            <div className="mb-4 flex gap-2">
-              {(
-                [
-                  { view: "dayGridMonth" as CalendarView, label: "Month" },
-                  { view: "timeGridWeek" as CalendarView, label: "Week" },
-                  { view: "listWeek" as CalendarView, label: "List" },
-                ] as const
-              ).map(({ view, label }) => (
+          <main className="flex-1 bg-gray-100 sm:rounded-r-2xl sm:p-8">
+            {/* View toggle + navigation */}
+            <div className="mb-4 flex items-center justify-between">
+              <div className="flex gap-2">
+                {(
+                  [
+                    { view: "dayGridMonth" as CalendarView, label: "Month" },
+                    { view: "timeGridWeek" as CalendarView, label: "Week" },
+                    { view: "listWeek" as CalendarView, label: "List" },
+                  ] as const
+                ).map(({ view, label }) => (
+                  <button
+                    key={view}
+                    onClick={() => switchView(view)}
+                    className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors hover:cursor-pointer ${
+                      currentView === view
+                        ? "bg-black text-white"
+                        : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))}
+              </div>
+              <div className="flex gap-2">
                 <button
-                  key={view}
-                  onClick={() => switchView(view)}
-                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-                    currentView === view
-                      ? "bg-black text-white"
-                      : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-                  }`}
+                  onClick={() => calendarRef.current?.getApi().prev()}
+                  className="rounded-full border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:cursor-pointer hover:bg-gray-50"
                 >
-                  {label}
+                  ←
                 </button>
-              ))}
+                <button
+                  onClick={() => calendarRef.current?.getApi().today()}
+                  className="rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:cursor-pointer hover:bg-gray-50"
+                >
+                  Today
+                </button>
+                <button
+                  onClick={() => calendarRef.current?.getApi().next()}
+                  className="rounded-full border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:cursor-pointer hover:bg-gray-50"
+                >
+                  →
+                </button>
+              </div>
             </div>
 
-            <div className="rounded-2xl bg-white">
+            <div className="bg-white">
               {isMounted && (
                 <FullCalendar
                   ref={calendarRef}
                   plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
                   initialView="timeGridWeek"
                   firstDay={1}
-                  headerToolbar={{ left: "prev,next", center: "title", right: "" }}
+                  headerToolbar={false}
                   slotMinTime="09:00:00"
                   slotMaxTime="22:00:00"
                   allDaySlot={false}
@@ -729,7 +739,7 @@ const SchedulePage: React.FC = () => {
                   selectable={false}
                   events={filteredEvents}
                   eventContent={renderEventContent}
-                  eventDisplay="block"
+                  eventDisplay="auto"
                   height="auto"
                 />
               )}
