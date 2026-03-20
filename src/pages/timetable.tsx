@@ -512,9 +512,9 @@ function renderEventContent(eventInfo: {
 }) {
   const { classCount } = eventInfo.event.extendedProps;
   return (
-    <div className="overflow-hidden p-1 text-xs leading-tight text-black">
-      <p className="pb-2 font-medium">{eventInfo.timeText}</p>
-      <p className="pb-2 font-bold">{eventInfo.event.title}</p>
+    <div className="overflow-hidden px-2 py-1 text-xs leading-tight text-black">
+      <p className="font-medium">{eventInfo.timeText}</p>
+      <p className="py-2 font-bold">{eventInfo.event.title}</p>
       {classCount && <p className="font-medium">{classCount} CLASSES</p>}
     </div>
   );
