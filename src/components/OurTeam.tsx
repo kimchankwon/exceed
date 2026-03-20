@@ -31,16 +31,15 @@ const OurTeam = ({ variant = "preview" }: OurTeamProps) => {
   const isFull = variant === "full";
 
   return (
-    <div data-header-theme="light" id="our-team" className="flex flex-col gap-20 px-12 pt-42 pb-38">
+    <div data-header-theme="light" id="our-team" className="flex flex-col gap-16 px-12 pt-42 pb-38">
       {isFull ? (
         <>
           <h1 className="sm:text-display text-h3 w-full max-w-xs leading-none font-extrabold uppercase">
             {contentfulContentCard?.title}
           </h1>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div />
-            <p className="text-h5 max-w-md font-medium">
+            <p className="text-h5 max-w-lg leading-8 font-medium tracking-wider">
               {contentfulContentCard?.description?.description}
             </p>
           </div>

@@ -1,17 +1,10 @@
 import * as React from "react";
-import { graphql, Link, PageProps } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import FAQ from "../components/FAQ";
 import NeedGuidance from "../components/NeedGuidance";
 import OurTeam from "../components/OurTeam";
-
-const MOCK_TESTIMONIAL = {
-  quote:
-    '"The tutoring was clear, supportive, and tailored to my needs. I gained confidence in the subject and saw real improvement in my results. Highly recommend!"',
-  name: "– John Smith",
-  school: "Carlingford Boys High School",
-  year: "Graduated 2023",
-};
+import Testimonials from "../components/Testimonials";
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) => {
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
@@ -63,7 +56,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
   return (
     <div className="bg-cream">
       {/* Hero Headline */}
-      <div data-header-theme="light" className="px-12 pt-54 pb-24">
+      <div data-header-theme="light" className="px-12 pt-54 pb-21">
         <h1 className="sm:text-display-lg max-w-5xl leading-none font-extrabold uppercase">
           {aboutTitle?.description?.description}
         </h1>
@@ -104,12 +97,16 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
 
       {/* Our Story */}
       <div data-header-theme="light" className="bg-grey px-12 pt-36 pb-40">
-        <h1 className="sm:text-display text-h3 mb-20 w-xs leading-none font-extrabold uppercase">
+        <h1 className="sm:text-display text-h3 mb-16 w-xs leading-none font-extrabold uppercase">
           {about1?.title}
         </h1>
         {/* Row 1: text left, image right */}
         <div className="mb-20 grid grid-cols-1 gap-8 sm:grid-cols-2">
-          <p className="text-h5 max-w-173 font-medium">{about1?.description?.description}</p>
+          <div />
+          <p className="text-h5 max-w-2xl pb-12 leading-7 tracking-wider">
+            {about1?.description?.description}
+          </p>
+          <div />
           {about1?.photo?.gatsbyImageData && (
             <GatsbyImage
               image={about1.photo.gatsbyImageData}
@@ -119,7 +116,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           )}
         </div>
         {/* Row 2: image left, text right */}
-        <div className="mb-40 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:flex-row">
+        <div className="grid grid-cols-1 gap-8 pb-36 sm:grid-cols-2 sm:flex-row">
           {about2?.photo?.gatsbyImageData && (
             <GatsbyImage
               image={about2.photo.gatsbyImageData}
@@ -128,8 +125,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
             />
           )}
           <div className="text-body-lg max-w-116.5">
-            <p className="mb-4">{about2?.description?.description}</p>
-            <p>{about2?.description2?.description2}</p>
+            <p className="mb-4 leading-6.5 tracking-wider">{about2?.description?.description}</p>
+            <p className="leading-6.5 tracking-wider">{about2?.description2?.description2}</p>
           </div>
         </div>
         {/* Large centered quote */}
@@ -148,8 +145,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
       </div>
 
       {/* Our Values */}
-      <div data-header-theme="light" className="px-12 pt-38 pb-28">
-        <h1 className="sm:text-display text-h3 mb-12 max-w-xs font-extrabold uppercase">
+      <div data-header-theme="light" className="px-12 py-36">
+        <h1 className="sm:text-display text-h3 mb-16 max-w-xs font-extrabold uppercase">
           {ourValues?.title}
         </h1>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -158,7 +155,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
               <GatsbyImage
                 image={ourValues.photo.gatsbyImageData}
                 alt={ourValues.title || "Image"}
-                className="max-w-sm"
+                className="max-w-lg"
               />
             )}
           </div>
@@ -176,13 +173,17 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
                     <p className="text-h5 [.peer:checked~*_&]:text-h4 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:pb-8">
                       0{i + 1}.
                     </p>
-                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-55">
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-2 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-55">
                       {value?.title}
                     </p>
                   </div>
                   <div className="collapse-content max-w-md px-0">
-                    <p className="text-body-lg pb-4">{value?.description?.description}</p>
-                    <p className="text-body-lg">{value?.description2?.description2}</p>
+                    <p className="text-body-lg pb-4 leading-6 tracking-wider">
+                      {value?.description?.description}
+                    </p>
+                    <p className="text-body-lg leading-6 tracking-wider">
+                      {value?.description2?.description2}
+                    </p>
                   </div>
                 </div>
               ) : null
@@ -192,45 +193,14 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
       </div>
 
       {/* Testimonials */}
-      <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 py-44">
-        <h1 className="sm:text-display max-w-5xl pb-40 text-center text-4xl font-extrabold text-white uppercase">
-          Our students&apos; achievements are the true measure of our impact.
-        </h1>
-        <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
-          <div className="bg-peach flex h-110 flex-col justify-between p-6">
-            <p className="text-h4 overflow-hidden font-extrabold text-white uppercase">
-              {MOCK_TESTIMONIAL.quote}
-            </p>
-            <div>
-              <p className="text-h4 font-extrabold text-white uppercase">{MOCK_TESTIMONIAL.name}</p>
-              <p className="text-body mt-2 font-medium text-white">{MOCK_TESTIMONIAL.school}</p>
-              <p className="text-body text-white">{MOCK_TESTIMONIAL.year}</p>
-            </div>
-          </div>
-          <div className="flex h-110 items-center justify-center bg-gray-600">
-            <span className="text-white/30">Testimonial Image</span>
-          </div>
-          <div className="flex h-151.25 items-center justify-center bg-gray-500">
-            <span className="text-white/30">Testimonial Image</span>
-          </div>
-          <div className="flex h-151.5 items-center justify-center bg-gray-400">
-            <span className="text-white/30">Testimonial Image</span>
-          </div>
-        </div>
-        <Link
-          to="/"
-          className="btn btn-outline mt-20 rounded-full border-white text-white uppercase hover:bg-black"
-        >
-          load more
-        </Link>
-      </div>
+      <Testimonials heading="Our students' achievements are the true measure of our impact." />
 
       {/* Our Team */}
       <OurTeam variant="full" />
 
       {/* Schools Collaboration */}
       <div data-header-theme="light" className="px-12 pb-28">
-        <h1 className="text-h4 max-w-lg pb-16 leading-none font-extrabold uppercase">
+        <h1 className="text-h4 max-w-lg pb-28 leading-none font-extrabold uppercase">
           {collaboration?.description?.description}
         </h1>
         <div className="grid grid-cols-2 gap-8 opacity-25 sm:grid-cols-5">
@@ -240,11 +210,11 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
                 <GatsbyImage
                   image={photo.gatsbyImageData}
                   alt={`Collaboration ${index + 1}`}
-                  className="h-28"
+                  className="h-26"
                   objectFit="contain"
                 />
               )}
-              <p className="text-body text-center font-medium text-black">{photo?.title}</p>
+              <p className="text-body pb-10 text-center font-medium text-black">{photo?.title}</p>
             </div>
           ))}
         </div>
