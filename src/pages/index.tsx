@@ -2,6 +2,8 @@ import { graphql, Link, type PageProps } from "gatsby";
 import * as React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import FAQ from "../components/FAQ";
+import NeedGuidance from "../components/NeedGuidance";
+import OurTeam from "../components/OurTeam";
 
 const MOCK_SUBJECTS = {
   english: {
@@ -15,13 +17,6 @@ const MOCK_SUBJECTS = {
       "Our tailored lessons focus on building strong foundations, improving problem-solving skills, and boosting academic performance—empowering high school students to excel in exams and beyond.",
   },
 };
-
-const MOCK_TUTORS = [
-  { id: "1", name: "Sarah Chen" },
-  { id: "2", name: "James Park" },
-  { id: "3", name: "Emily Wang" },
-  { id: "4", name: "Michael Liu" },
-];
 
 const MOCK_TESTIMONIAL = {
   quote:
@@ -37,7 +32,6 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
     landingPage2,
     landingPage3,
     landingPage4,
-    landingPageTutors,
     landingPageTestimonials,
     landingPage6,
   } = data;
@@ -63,7 +57,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Hero Headline + CTA */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-10 px-12 pt-20 pb-40"
+        className="flex flex-col items-center justify-center gap-10 px-12 pt-20 pb-42"
       >
         <h1 className="sm:text-display text-h3 max-w-6xl pb-10 text-center font-extrabold uppercase">
           {landingPage1?.description?.description}
@@ -77,11 +71,9 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       <div data-header-theme="dark" className="bg-base-200 relative overflow-hidden px-12 py-20">
         {/* Why Exceed - Top */}
         <div className="flex flex-col justify-between gap-2 sm:flex-row">
-          <div className="flex max-w-[513px] flex-col gap-1 text-white">
+          <div className="flex max-w-124 flex-col gap-1 text-white">
             <p className="text-body-lg font-medium">{landingPage2?.description?.description}</p>
-            <p className="text-h5 leading-normal font-medium">
-              {landingPage2?.description2?.description2}
-            </p>
+            <p className="text-h5 leading-7">{landingPage2?.description2?.description2}</p>
           </div>
           {landingPage2?.photo?.gatsbyImageData && (
             <GatsbyImage
@@ -100,11 +92,9 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
               className="max-h-[716px] max-w-143"
             />
           )}
-          <div className="flex max-w-[510px] flex-col gap-1 text-white">
+          <div className="flex max-w-124 flex-col gap-1 text-white">
             <p className="text-body-lg font-medium">{landingPage3?.description?.description}</p>
-            <p className="text-h5 leading-normal font-medium">
-              {landingPage3?.description2?.description2}
-            </p>
+            <p className="text-h5 leading-7">{landingPage3?.description2?.description2}</p>
           </div>
         </div>
       </div>
@@ -112,18 +102,20 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Fostering the Right Approach */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-5 px-12 pt-24 pb-12"
+        className="flex flex-col items-center justify-center gap-7 px-12 pt-42 pb-12"
       >
         <h1 className="sm:text-display max-w-3xl text-center text-4xl font-extrabold uppercase">
           {landingPage4?.description?.description}
         </h1>
-        <p className="text-body max-w-md text-center">{landingPage4?.description2?.description2}</p>
+        <p className="text-body max-w-md text-center tracking-wide">
+          {landingPage4?.description2?.description2}
+        </p>
       </div>
 
       {/* Subject Tab Switcher + Cards */}
       <div data-header-theme="light" className="flex flex-col items-center px-12">
         {/* Tab Pills */}
-        <div className="relative flex">
+        <div className="relative flex pb-5">
           <button
             className={`text-body relative z-10 rounded-full py-3 pl-5 font-medium uppercase transition-colors ${
               activeSubject === "maths" ? "bg-ink pr-5 text-white" : "bg-grey text-ink z-10 pr-11"
@@ -143,6 +135,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         </div>
 
         {/* Subject Card */}
+        {/* TODO */}
         <div className="bg-ink mt-5 flex w-full items-end overflow-hidden">
           {/* Image placeholder */}
           <div className="hidden h-[527px] w-[759px] shrink-0 items-center justify-center bg-gray-700 sm:flex">
@@ -175,28 +168,11 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       </div>
 
       {/* Tutors Section */}
-      <div data-header-theme="light" className="flex flex-col items-center gap-20 px-12 py-28">
-        <p className="text-h3 max-w-4xl self-start font-medium">
-          {landingPageTutors?.description?.description}
-        </p>
-        <div className="grid w-full grid-cols-2 gap-8 sm:grid-cols-4">
-          {MOCK_TUTORS.map((tutor) => (
-            <div key={tutor.id} className="flex h-[440px] items-end overflow-hidden bg-gray-300">
-              <span className="p-4 text-sm font-medium text-black/40">{tutor.name}</span>
-            </div>
-          ))}
-        </div>
-        <Link
-          to="/about/"
-          className="btn btn-secondary bg-secondary text-navy rounded-full uppercase"
-        >
-          meet our team
-        </Link>
-      </div>
+      <OurTeam />
 
       {/* Testimonials Section */}
-      <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 py-32">
-        <h1 className="sm:text-display max-w-5xl pb-20 text-center text-4xl font-extrabold text-white uppercase">
+      <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 pt-44 pb-48">
+        <h1 className="sm:text-display max-w-5xl pb-42 text-center text-4xl font-extrabold text-white uppercase">
           {landingPageTestimonials?.description?.description}
         </h1>
         {/* Bento Grid */}
@@ -256,7 +232,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       </div>
 
       {/* Stats Counter */}
-      <div data-header-theme="light" className="flex flex-col items-end gap-10 px-12">
+      <div data-header-theme="light" className="flex flex-col items-end gap-6 px-12">
         {/* Arrow Navigation */}
         <div className="flex gap-6">
           <button className="flex h-12 w-12 items-center justify-center opacity-50">
@@ -283,7 +259,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           </button>
         </div>
         {/* Counter */}
-        <div className="flex w-full items-end justify-between">
+        <div className="flex w-full flex-wrap items-end justify-between">
           <span className="text-primary sm:text-stat text-display leading-none font-extrabold uppercase">
             12231
           </span>
@@ -304,13 +280,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       <FAQ />
 
       {/* Need Guidance CTA */}
-      <div data-header-theme="light" className="sm:px-12">
-        <div className="bg-sky-soft px-12 py-12">
-          <h1 className="text-h4 max-w-127.75 font-extrabold uppercase">
-            NEED GUIDANCE? LET&apos;S CHAT.
-          </h1>
-        </div>
-      </div>
+      <NeedGuidance />
     </div>
   );
 };
@@ -356,18 +326,6 @@ export const landingPageQuery = graphql`
       }
       description2 {
         description2
-      }
-    }
-    landingPageTutors: contentfulContentCard(title: { eq: "Landing Page Tutors Section" }) {
-      title
-      description {
-        description
-      }
-      description2 {
-        description2
-      }
-      photo {
-        gatsbyImageData(width: 1200, placeholder: BLURRED, layout: CONSTRAINED)
       }
     }
     landingPageTestimonials: contentfulContentCard(

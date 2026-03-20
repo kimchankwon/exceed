@@ -3,7 +3,7 @@ import { useLocation } from "@reach/router";
 
 export type HeaderTheme = "light" | "dark";
 
-const HEADER_HEIGHT = 68;
+const HEADER_HEIGHT = 108;
 
 export function useHeaderTheme(): HeaderTheme {
   const [theme, setTheme] = useState<HeaderTheme>("light");

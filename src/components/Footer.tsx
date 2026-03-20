@@ -25,7 +25,7 @@ const Footer = () => {
   `);
   const footerItems = data.allContentfulFooter.nodes;
   return (
-    <footer className="bg-base-300 text-white/70">
+    <footer data-header-theme="dark" className="bg-base-300 text-white/70">
       {/* Top Row: Logo + Newsletter */}
       <div className="grid grid-cols-1 items-center gap-8 px-12 pt-10 pb-20 sm:grid-cols-2">
         <img
@@ -33,7 +33,7 @@ const Footer = () => {
           alt="Exceed"
           className="w-48 justify-self-center sm:justify-self-start"
         />
-        <div className="flex items-center gap-8">
+        <div className="flex flex-wrap items-center justify-center gap-8">
           <input
             type="email"
             placeholder="Email address"

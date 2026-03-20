@@ -2,6 +2,8 @@ import * as React from "react";
 import { graphql, Link, PageProps } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import FAQ from "../components/FAQ";
+import NeedGuidance from "../components/NeedGuidance";
+import OurTeam from "../components/OurTeam";
 
 const MOCK_TESTIMONIAL = {
   quote:
@@ -10,13 +12,6 @@ const MOCK_TESTIMONIAL = {
   school: "Carlingford Boys High School",
   year: "Graduated 2023",
 };
-
-const MOCK_TUTORS = [
-  { id: "1", name: "Sarah Chen", role: "Founder" },
-  { id: "2", name: "James Park", role: "Co-founder" },
-  { id: "3", name: "Emily Wang", role: "English Tutor" },
-  { id: "4", name: "Michael Liu", role: "Maths Tutor" },
-];
 
 const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) => {
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
@@ -231,33 +226,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
       </div>
 
       {/* Our Team */}
-      <div data-header-theme="light" className="px-12 py-20">
-        <h1 className="sm:text-display text-h3 mb-10 leading-none font-extrabold uppercase">
-          Our
-          <br />
-          Team
-        </h1>
-        <div className="mb-10 flex flex-col gap-8 sm:flex-row sm:justify-between">
-          <div />
-          <p className="text-h5 max-w-136 font-medium">
-            Meet our dedicated teachers guiding every student with clarity and confidence.
-          </p>
-        </div>
-        <div className="mb-10 grid w-full grid-cols-2 gap-8 sm:grid-cols-4">
-          {MOCK_TUTORS.map((tutor) => (
-            <div key={tutor.id} className="flex flex-col gap-8">
-              <div className="h-110 bg-gray-300" />
-              <div>
-                <p className="text-body font-extrabold uppercase">{tutor.name}</p>
-                <p className="text-body text-ink/50">{tutor.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="flex justify-center">
-          <button className="btn btn-secondary text-navy rounded-full uppercase">load more</button>
-        </div>
-      </div>
+      <OurTeam variant="full" />
 
       {/* Schools Collaboration */}
       <div data-header-theme="light" className="px-12 pb-28">
@@ -285,13 +254,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
       <FAQ />
 
       {/* Need Guidance CTA */}
-      <div data-header-theme="light" className="sm:px-12">
-        <div className="bg-sky-soft px-12 py-12">
-          <h1 className="text-h4 max-w-127.75 font-extrabold uppercase">
-            NEED GUIDANCE? LET&apos;S CHAT.
-          </h1>
-        </div>
-      </div>
+      <NeedGuidance />
     </div>
   );
 };
