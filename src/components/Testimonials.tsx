@@ -15,6 +15,7 @@ interface TestimonialsProps {
 
 const Testimonials: React.FC<TestimonialsProps> = ({ heading }) => (
   <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 pt-44 pb-48">
+    {/* TODO */}
     <h1 className="sm:text-display max-w-5xl pb-42 text-center text-4xl font-extrabold text-white uppercase">
       {heading}
     </h1>

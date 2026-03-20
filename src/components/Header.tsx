@@ -88,13 +88,8 @@ const Header = () => {
                       <ul className="p-2">
                         {link.links?.map((l, i) =>
                           l ? (
-                            <li key={l.id}>
-                              <Link
-                                to={l.url ?? ""}
-                                className={
-                                  "link link-hover text-nav" + (i % 3 === 0 ? " pt-3" : "")
-                                }
-                              >
+                            <li key={l.id} className={i % 3 === 0 ? "pt-3" : ""}>
+                              <Link to={l.url ?? ""} className="link link-hover text-nav">
                                 {l.title}
                               </Link>
                             </li>
