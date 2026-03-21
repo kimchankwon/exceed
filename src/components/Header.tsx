@@ -1,15 +1,22 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
-import { useLocation } from "@reach/router";
+import { useEffect, useRef, useState } from "react";
 import { useHeaderThemeContext } from "./HeaderThemeContext";
 import logoWhite from "../images/logo-white.svg";
 import logoBlack from "../images/logo-black.svg";
 
 const Header = () => {
-  const location = useLocation();
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
-  // TODO show active
-  const isActive = (path: string) => location.pathname.includes(path);
-
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      setHidden(currentY > lastScrollY.current && currentY > 80);
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const data = useStaticQuery<Queries.HeaderQueryQuery>(graphql`
     query HeaderQuery {
       header: contentfulHeader(title: { eq: "Header" }) {
@@ -45,7 +52,7 @@ const Header = () => {
 
   return (
     <header
-      className={`navbar fixed top-0 right-0 left-0 z-50 transition-colors duration-0 sm:grid sm:min-w-full sm:grid-cols-[1fr_auto_1fr] sm:px-12 sm:py-8 ${isDark ? "text-white" : "text-black"}`}
+      className={`navbar fixed top-0 right-0 left-0 z-50 transition-transform duration-300 sm:grid sm:min-w-full sm:grid-cols-[1fr_auto_1fr] sm:px-12 sm:py-8 ${hidden ? "-translate-y-full" : "translate-y-0"} ${isDark ? "text-white" : "text-black"}`}
     >
       {/* Gradient backdrop blur overlay */}
       <div

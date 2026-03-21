@@ -20,7 +20,6 @@ const MOCK_SUBJECTS = {
   },
 };
 
-
 const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data }) => {
   const {
     landingPage1,
@@ -149,7 +148,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       <OurTeam />
 
       {/* Testimonials Section */}
-      <Testimonials heading={landingPageTestimonials?.description?.description} />
+      <Testimonials heading={landingPageTestimonials?.description?.description ?? ""} />
 
       {/* "Our Strategy Works" */}
       <div
