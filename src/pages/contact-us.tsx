@@ -43,15 +43,19 @@ const ContactUsPage: React.FC<PageProps<Queries.ContactUsPageQueryQuery>> = ({ d
     <div>
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-5 px-12 pt-40 pb-28"
+        className="flex flex-col items-center justify-center gap-8 px-12 pt-52 pb-28"
       >
-        <h1 className="text-center text-3xl font-extrabold sm:text-5xl">{contactUs?.title}</h1>
-        <p className="max-w-sm text-center text-[12px]">{contactUs?.description?.description}</p>
+        <h1 className="sm:text-display text-h3 leading-none font-extrabold uppercase">
+          {contactUs?.title}
+        </h1>
+        <p className="text-body max-w-md text-center tracking-wide">
+          {contactUs?.description?.description}
+        </p>
       </div>
-      <div data-header-theme="light" className="bg-secondary px-6 py-8 sm:mx-8">
-        <div className="grid grid-cols-1 gap-16 sm:grid-cols-2">
+      <div data-header-theme="light" className="bg-secondary px-8 py-12 sm:mx-12">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
           <div>
-            <p className="max-w-xs text-base">
+            <p className="text-body-lg max-w-md font-light tracking-widest">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et ante volutpat eros
               lobortis mollis nec vel nisi.
             </p>
@@ -74,107 +78,89 @@ const ContactUsPage: React.FC<PageProps<Queries.ContactUsPageQueryQuery>> = ({ d
                   <div aria-hidden="true" className="absolute -left-[9999px]">
                     <Field type="text" name="website" tabIndex={-1} autoComplete="off" />
                   </div>
-                  <div className="mb-6 grid grid-cols-2 gap-3">
+                  <div className="mb-10 grid grid-cols-2 gap-4">
                     <div>
-                      <div className="mb-1.5 flex items-center gap-2">
-                        <p className="text-[12px]">First Name</p>
-                        <ErrorMessage
-                          name="firstName"
-                          component="span"
-                          className="text-error text-[10px]"
-                        />
+                      <div className="mb-2 flex items-center gap-3">
+                        <p>First Name</p>
+                        <ErrorMessage name="firstName" component="span" className="text-error" />
                       </div>
                       <Field
                         name="firstName"
                         placeholder="John"
-                        className="w-full rounded-md bg-white px-2.5 py-2 text-[12px] focus:outline-none"
+                        className="w-full rounded-md bg-gray-100 p-3 focus:outline-none"
                       />
                     </div>
                     <div>
-                      <div className="mb-1.5 flex items-center gap-2">
-                        <p className="text-[12px]">Last Name</p>
-                        <ErrorMessage
-                          name="lastName"
-                          component="span"
-                          className="text-error text-[10px]"
-                        />
+                      <div className="mb-2 flex items-center gap-2">
+                        <p>Last Name</p>
+                        <ErrorMessage name="lastName" component="span" className="text-error" />
                       </div>
                       <Field
                         name="lastName"
                         placeholder="Smith"
-                        className="w-full rounded-md bg-white px-2.5 py-2 text-[12px] focus:outline-none"
+                        className="w-full rounded-md bg-gray-100 p-3 focus:outline-none"
                       />
                     </div>
                   </div>
-                  <div className="mb-6">
-                    <div className="mb-1.5 flex items-center gap-2">
-                      <p className="text-[12px]">Phone</p>
-                      <ErrorMessage
-                        name="phone"
-                        component="span"
-                        className="text-error text-[10px]"
-                      />
+                  <div className="mb-10">
+                    <div className="mb-2 flex items-center gap-2">
+                      <p>Phone Number</p>
+                      <ErrorMessage name="phone" component="span" className="text-error" />
                     </div>
                     <PhoneInput
                       international
                       defaultCountry="AU"
                       countrySelectProps={{ tabIndex: -1 }}
                       value={values.phone}
-                      onChange={(value) => setFieldValue("phone", value || "")}
-                      onBlur={() => setFieldTouched("phone", true)}
+                      onChange={(value) => {
+                        void setFieldValue("phone", value || "");
+                      }}
+                      onBlur={() => {
+                        void setFieldTouched("phone", true);
+                      }}
                       onFocus={(e: React.FocusEvent<HTMLInputElement>) => {
                         const len = e.target.value.length;
                         e.target.setSelectionRange(len, len);
                       }}
-                      className="phone-input w-full rounded-md bg-white px-2.5 py-2 text-[12px] focus:outline-none"
+                      className="phone-input w-full rounded-md bg-gray-100 p-3 text-base focus:outline-none"
                     />
                   </div>
-                  <div className="mb-6">
-                    <div className="mb-1.5 flex items-center gap-2">
-                      <p className="text-[12px]">Email *</p>
-                      <ErrorMessage
-                        name="email"
-                        component="span"
-                        className="text-error text-[10px]"
-                      />
+                  <div className="mb-10">
+                    <div className="mb-2 flex items-center gap-2">
+                      <p>Email *</p>
+                      <ErrorMessage name="email" component="span" className="text-error" />
                     </div>
                     <Field
                       type="email"
                       name="email"
                       placeholder="john.smith@email.com"
-                      className="w-full rounded-md bg-white px-2.5 py-2 text-[12px] focus:outline-none"
+                      className="w-full rounded-md bg-gray-100 p-3 focus:outline-none"
                     />
                   </div>
-                  <div className="mb-6">
-                    <div className="mb-1.5 flex items-center gap-2">
-                      <p className="text-[12px]">Message</p>
-                      <ErrorMessage
-                        name="message"
-                        component="span"
-                        className="text-error text-[10px]"
-                      />
+                  <div className="mb-10">
+                    <div className="mb-2 flex items-center gap-2">
+                      <p>Message</p>
+                      <ErrorMessage name="message" component="span" className="text-error" />
                     </div>
                     <Field
                       as="textarea"
                       name="message"
                       rows={4}
                       placeholder="Your message..."
-                      className="w-full resize-none rounded-md bg-white px-2.5 py-2 text-[12px] focus:outline-none"
+                      className="w-full resize-none rounded-md bg-gray-100 p-3 focus:outline-none"
                     />
                   </div>
                   <div className="flex items-center gap-4">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`btn btn-secondary btn-sm rounded-full font-light text-white ${isSubmitting ? "bg-gray-400" : "bg-black"}`}
+                      className={`btn btn-secondary rounded-full font-light text-white ${isSubmitting ? "bg-gray-400" : "bg-black"}`}
                     >
                       {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
                     </button>
-                    {submitError && <p className="text-error text-[12px]">{submitError}</p>}
+                    {submitError && <p className="text-error">{submitError}</p>}
                     {submitSuccess && (
-                      <p className="text-success text-[12px]">
-                        Submitted. We will contact you soon.
-                      </p>
+                      <p className="text-success">Submitted. We will contact you soon.</p>
                     )}
                   </div>
                 </Form>
