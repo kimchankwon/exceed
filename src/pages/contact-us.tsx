@@ -122,7 +122,7 @@ const ContactUsPage: React.FC<PageProps<Queries.ContactUsPageQueryQuery>> = ({ d
                         const len = e.target.value.length;
                         e.target.setSelectionRange(len, len);
                       }}
-                      className="phone-input w-full rounded-md bg-gray-100 p-3 text-base focus:outline-none"
+                      className="phone-input w-full rounded-md bg-gray-100 p-3 focus:outline-none"
                     />
                   </div>
                   <div className="mb-10">
