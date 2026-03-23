@@ -45,7 +45,29 @@
   margin-right: 0.5rem;
 }
 
+@layer base {
+  body {
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .text-display-lg,
+  .text-display,
+  .text-stat,
+  .text-h3,
+  .text-h4,
+  .text-h5,
+  .text-nav {
+    font-family: var(--font-sans);
+  }
+}
+
 @theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+
   /* Display Large — 80px — Inter 800 — hero headings */
   --text-display-lg: 80px;
 
