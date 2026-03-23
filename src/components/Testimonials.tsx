@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { IGatsbyImageData } from "gatsby-plugin-image";
 
 const MOCK_TESTIMONIAL = {
   quote:
@@ -9,15 +10,58 @@ const MOCK_TESTIMONIAL = {
   year: "Graduated 2023",
 };
 
-interface TestimonialsProps {
-  heading?: string;
+type TestimonialsProps = {
+  variant?: "original" | "updated";
+}
+const TESTIMONIALS_IN_VIEW = 5;
+
+const TestimonialLanding = ({ variant = "updated" }: TestimonialsProps) => {
+  const heading = useStaticQuery<Queries.LandingPageTestimonialSectionQueryQuery>(graphql `
+    query LandingPageTestimonialSectionQuery {
+      contentfulContentCard(title: { eq: "Landing Page Testimonials Section" }){
+      title
+      description {
+        description
+      }
+      }
+    }
+  `
+  );
 }
 
+const Testimonies = () => {
+  const [visibleCount, setVisibleCount] = React.useState(TESTIMONIALS_IN_VIEW);
+  const data = useStaticQuery<Queries.AllTestimonialsQueryQuery>(graphql `
+    query AllTestimonialsQuery {
+      allTestimonials{
+        nodes {
+          studentName
+          entryTitle
+          year
+          studentImage {
+            gatsbyImageData(width: 400, placeholder: BLURRED, layout: CONSTRAINED)
+            title
+          }
+          hideLongTestimonial
+          testimonial
+          testimonialExtended {
+            raw
+          }
+        }
+      }
+    }
+    `);
+
+}
+
+const { contentfulContentCard } = heading;
+const { testimonials } = data;
+
 const Testimonials: React.FC<TestimonialsProps> = ({ heading }) => (
-  <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 pt-44 pb-48">
+  <div data-header-theme="dark" id="testimonials" className="bg-ink flex flex-col items-center px-12 pt-44 pb-48">
     {/* TODO */}
     <h1 className="sm:text-display max-w-5xl pb-42 text-center text-4xl font-extrabold text-white uppercase">
-      {heading}
+      {contentfulContentCard?.description?.description}
     </h1>
     <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
       {/* Row 1: Text card + Image card */}
