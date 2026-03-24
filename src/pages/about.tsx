@@ -173,7 +173,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
                     <p className="text-h5 [.peer:checked~*_&]:text-h4 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:pb-8">
                       0{i + 1}.
                     </p>
-                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-2 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-55">
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-2 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-56">
                       {value?.title}
                     </p>
                   </div>
