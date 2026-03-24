@@ -8,7 +8,9 @@ const config: GatsbyConfig = {
     title: `Exceed Education`,
     siteUrl: `https://TODO.com`,
   },
-  graphqlTypegen: true,
+  graphqlTypegen: {
+    typesOutputPath: "gatsby-types.d.ts",
+  },
   jsxRuntime: "automatic",
   flags: {
     FUNCTIONS: true,

@@ -173,7 +173,7 @@ const Timetable: React.FC<TimetableProps> = ({ subject }) => {
       {/* Calendar */}
       <main className="flex-1 bg-gray-100 sm:rounded-r-2xl sm:p-8">
         {/* View toggle + navigation */}
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-4 flex flex-wrap items-center justify-between">
           <div className="flex gap-2">
             {(
               [

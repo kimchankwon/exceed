@@ -50,6 +50,11 @@ const Header = () => {
   const headerTheme = useHeaderThemeContext();
   const isDark = headerTheme === "dark";
 
+  const closeDetails = (e: React.MouseEvent) => {
+    const details = (e.target as HTMLElement).closest("details");
+    if (details) details.removeAttribute("open");
+  };
+
   return (
     <header
       className={`navbar fixed top-0 right-0 left-0 z-50 transition-transform duration-300 sm:grid sm:min-w-full sm:grid-cols-[1fr_auto_1fr] sm:px-12 sm:py-8 ${hidden ? "-translate-y-full" : "translate-y-0"} ${isDark ? "text-white" : "text-black"}`}
@@ -96,7 +101,11 @@ const Header = () => {
                         {link.links?.map((l, i) =>
                           l ? (
                             <li key={l.id} className={i % 4 === 0 ? "pt-3" : ""}>
-                              <Link to={l.url ?? ""} className="link link-hover text-nav">
+                              <Link
+                                to={l.url ?? ""}
+                                className="link link-hover text-nav"
+                                onClick={closeDetails}
+                              >
                                 {l.title}
                               </Link>
                             </li>
@@ -138,6 +147,7 @@ const Header = () => {
                             <Link
                               to={l.url ?? ""}
                               className={"link link-hover text-nav" + (i % 4 === 3 ? " pb-3" : "")}
+                              onClick={closeDetails}
                             >
                               {l.title}
                             </Link>
@@ -169,13 +179,13 @@ const Header = () => {
               key={button.id}
               to={button.url ?? ""}
               className={
-                "btn btn-primary h-11" +
+                "btn btn-primary h-11 uppercase" +
                 (isDark
                   ? " border-white bg-transparent text-white"
                   : " border-base-200 btn-primary")
               }
             >
-              {button.title?.toUpperCase()}
+              {button.title}
             </Link>
           ) : null
         )}
