@@ -38,8 +38,32 @@ export const contactFormSchema = yup.object({
   message: yup.string().min(1, "Required").max(2000, "Max 2000 characters"),
 });
 
+// Enrollment form schemas
+export const enrollmentGuardianSchema = yup.object({
+  firstName: yup.string().required("Required").max(100, "Max 100 characters"),
+  lastName: yup.string().required("Required").max(100, "Max 100 characters"),
+  phone: yup
+    .string()
+    .required("Required")
+    .test("is-valid-phone", "Invalid phone number", (value) =>
+      value ? isValidPhoneNumber(value) : false
+    ),
+  email: yup.string().email("Invalid email").required("Required"),
+});
+
+export const enrollmentStudentSchema = yup.object({
+  studentFirstName: yup.string().required("Required").max(100, "Max 100 characters"),
+  studentLastName: yup.string().required("Required").max(100, "Max 100 characters"),
+  yearGroup: yup.string().required("Required"),
+  subject: yup.string().required("Required"),
+  additionalNotes: yup.string().max(2000, "Max 2000 characters"),
+});
+
+export const enrollmentFormSchema = enrollmentGuardianSchema.concat(enrollmentStudentSchema);
+
 // Export types
 export type MemberFormData = yup.InferType<typeof memberFormSchema>;
 export type CreateMemberRequest = yup.InferType<typeof createMemberRequestSchema>;
 export type ContactFormData = yup.InferType<typeof contactFormSchema>;
 export type ErrorResponse = yup.InferType<typeof errorResponseSchema>;
+export type EnrollmentFormData = yup.InferType<typeof enrollmentFormSchema>;
