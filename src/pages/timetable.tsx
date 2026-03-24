@@ -614,7 +614,7 @@ const SchedulePage: React.FC = () => {
         <h1 className="sm:text-display max-w-3xl text-center text-4xl font-extrabold uppercase">
           CLASS TIMETABLE
         </h1>
-        <p className="text-body max-w-md text-center tracking-wide">
+        <p className="text-body max-w-md text-center">
           With expert guidance, we help students strengthen their skills, build confidence, and
           achieve lasting results.
         </p>

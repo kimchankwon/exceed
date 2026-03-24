@@ -48,14 +48,12 @@ const ContactUsPage: React.FC<PageProps<Queries.ContactUsPageQueryQuery>> = ({ d
         <h1 className="sm:text-display text-h3 leading-none font-extrabold uppercase">
           {contactUs?.title}
         </h1>
-        <p className="text-body max-w-md text-center tracking-wide">
-          {contactUs?.description?.description}
-        </p>
+        <p className="text-body max-w-md text-center">{contactUs?.description?.description}</p>
       </div>
       <div data-header-theme="light" className="bg-secondary px-8 py-12 sm:mx-12">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
           <div>
-            <p className="text-body-lg max-w-md font-light tracking-widest">
+            <p className="text-body-lg max-w-md font-light">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et ante volutpat eros
               lobortis mollis nec vel nisi.
             </p>

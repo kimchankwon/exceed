@@ -101,9 +101,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         <h1 className="sm:text-display max-w-3xl text-center text-4xl font-extrabold uppercase">
           {landingPage4?.description?.description}
         </h1>
-        <p className="text-body max-w-md text-center tracking-wide">
-          {landingPage4?.description2?.description2}
-        </p>
+        <p className="text-body max-w-md text-center">{landingPage4?.description2?.description2}</p>
       </div>
 
       {/* Subject Tab Switcher + Cards */}
