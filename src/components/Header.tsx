@@ -137,7 +137,7 @@ const Header = () => {
                           <li key={l.id}>
                             <Link
                               to={l.url ?? ""}
-                              className={"link link-hover text-nav" + (i % 3 === 2 ? " pb-3" : "")}
+                              className={"link link-hover text-nav" + (i % 4 === 3 ? " pb-3" : "")}
                             >
                               {l.title}
                             </Link>
