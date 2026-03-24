@@ -84,7 +84,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           aria-label={isPlaying ? "Pause video" : "Play video"}
           onClick={handleToggle}
           onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") handleToggle();
+            if (e.key === "Enter") handleToggle();
           }}
         >
           {!isPlaying && (
