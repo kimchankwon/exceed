@@ -88,7 +88,7 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
           }}
         >
           {!isPlaying && (
-            <span className="btn btn-primary pointer-events-none rounded-full border-0 uppercase">
+            <span className="btn btn-primary pointer-events-none h-11 rounded-full border-0 uppercase">
               play video
             </span>
           )}

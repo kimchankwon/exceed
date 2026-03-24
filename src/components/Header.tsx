@@ -124,13 +124,13 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-center relative z-1 hidden justify-center gap-8 sm:block">
-        <ul className="menu menu-horizontal gap-8">
+        <ul className="menu menu-horizontal gap-9">
           {header?.links?.map((link) => {
             if (link && "links" in link && link.links) {
               return (
                 <li key={link.id}>
                   <details>
-                    <summary className="text-nav">{link.title?.toUpperCase()}</summary>
+                    <summary className="text-nav uppercase">{link.title}</summary>
                     <ul className="w-44 p-2 text-black">
                       {link.links?.map((l, i) =>
                         l ? (
@@ -169,7 +169,7 @@ const Header = () => {
               key={button.id}
               to={button.url ?? ""}
               className={
-                "btn btn-primary" +
+                "btn btn-primary h-11" +
                 (isDark
                   ? " border-white bg-transparent text-white"
                   : " border-base-200 btn-primary")

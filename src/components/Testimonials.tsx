@@ -44,7 +44,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ heading }) => (
     </div>
     <Link
       to="/"
-      className="btn btn-outline mt-20 rounded-full border-white text-white uppercase hover:bg-black"
+      className="btn btn-outline mt-20 h-11 rounded-full border-white text-white uppercase hover:bg-black"
     >
       load more
     </Link>

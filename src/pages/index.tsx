@@ -66,8 +66,8 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         {/* Why Exceed - Top */}
         <div className="flex flex-col justify-between gap-2 sm:flex-row">
           <div className="flex max-w-124 flex-col gap-1 text-white">
-            <p className="text-body-lg font-medium">{landingPage2?.description?.description}</p>
-            <p className="text-h5">{landingPage2?.description2?.description2}</p>
+            <p className="text-body-lg">{landingPage2?.description?.description}</p>
+            <p className="text-h5 leading-7">{landingPage2?.description2?.description2}</p>
           </div>
           {landingPage2?.photo?.gatsbyImageData && (
             <GatsbyImage
@@ -87,8 +87,8 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
             />
           )}
           <div className="flex max-w-124 flex-col gap-1 text-white">
-            <p className="text-body-lg font-medium">{landingPage3?.description?.description}</p>
-            <p className="text-h5">{landingPage3?.description2?.description2}</p>
+            <p className="text-body-lg">{landingPage3?.description?.description}</p>
+            <p className="text-h5 leading-7">{landingPage3?.description2?.description2}</p>
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* Fostering the Right Approach */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-7 px-12 pt-42 pb-12"
+        className="flex flex-col items-center justify-center gap-7 px-12 pt-40 pb-10"
       >
         <h1 className="sm:text-display max-w-3xl text-center text-4xl font-extrabold uppercase">
           {landingPage4?.description?.description}
@@ -151,7 +151,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       {/* "Our Strategy Works" */}
       <div
         data-header-theme="light"
-        className="flex flex-col items-center justify-center gap-10 px-12 pt-38 pb-28"
+        className="flex flex-col items-center justify-center gap-10 px-12 pt-38 pb-26"
       >
         <h1 className="sm:text-display max-w-5xl text-center text-4xl font-extrabold uppercase">
           {landingPage6?.description?.description}
@@ -159,13 +159,13 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         <div className="flex gap-4">
           <Link
             to="/about/"
-            className="btn border-ink w-38 flex-1 rounded-full border-2 bg-white uppercase"
+            className="btn border-ink h-11 w-38 flex-1 border-2 bg-white uppercase"
           >
             about us
           </Link>
           <Link
             to="/contact-us/"
-            className="btn btn-primary w-38 rounded-full border-0 text-white uppercase"
+            className="btn btn-primary h-11 w-38 rounded-full border-0 text-white uppercase"
           >
             enquire now
           </Link>
@@ -173,26 +173,26 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
       </div>
 
       {/* Stats Counter */}
-      <div data-header-theme="light" className="flex flex-col items-end gap-6 px-12">
+      <div data-header-theme="light" className="flex flex-col items-end gap-4 px-12">
         {/* Arrow Navigation */}
         <div className="flex gap-6">
-          <button className="flex h-12 w-12 items-center justify-center opacity-50">
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <button className="text-base-200 flex h-12 w-12 items-center justify-center opacity-50">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
               <path
-                d="M17 7H1M1 7L7 1M1 7L7 13"
+                d="M30 16H2M2 16L16 30M2 16L16 2"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
           </button>
-          <button className="flex h-12 w-12 items-center justify-center">
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+          <button className="text-base-200 flex h-12 w-12 items-center justify-center">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
               <path
-                d="M1 7H17M17 7L11 1M17 7L11 13"
+                d="M2 16H30M30 16L16 2M30 16L16 30"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />

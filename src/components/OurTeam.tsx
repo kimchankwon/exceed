@@ -48,7 +48,7 @@ const OurTeam = ({ variant = "preview" }: OurTeamProps) => {
         </>
       ) : (
         <>
-          <p className="text-h3 max-w-4xl font-medium">
+          <p className="text-h3 mb-2 max-w-4xl font-medium">
             {contentfulContentCard?.description?.description}
           </p>
         </>
@@ -82,7 +82,7 @@ const OurTeam = ({ variant = "preview" }: OurTeamProps) => {
         {isFull ? (
           visibleCount < PAGE_SIZE * 2 && (
             <button
-              className="btn btn-secondary text-navy rounded-full uppercase"
+              className="btn btn-secondary text-navy h-11 rounded-full uppercase"
               onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
             >
               load more
@@ -91,7 +91,7 @@ const OurTeam = ({ variant = "preview" }: OurTeamProps) => {
         ) : (
           <Link
             to="/about/#our-team"
-            className="btn btn-secondary bg-secondary text-navy rounded-full uppercase"
+            className="btn btn-secondary bg-secondary text-navy h-11 rounded-full uppercase"
           >
             meet our team
           </Link>
