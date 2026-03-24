@@ -16,9 +16,9 @@ interface TestimonialsProps {
 const Testimonials: React.FC<TestimonialsProps> = ({ heading }) => (
   <div data-header-theme="dark" className="bg-ink flex flex-col items-center px-12 pt-44 pb-48">
     {/* TODO */}
-    <h1 className="sm:text-display max-w-5xl pb-42 text-center text-4xl font-extrabold text-white uppercase">
+    <p className="sm:text-display max-w-262 pb-42 text-center leading-[105%] font-extrabold tracking-normal text-white uppercase">
       {heading}
-    </h1>
+    </p>
     <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
       {/* Row 1: Text card + Image card */}
       <div className="bg-peach flex h-[440px] flex-col justify-between p-6">

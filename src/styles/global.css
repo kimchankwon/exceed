@@ -16,9 +16,11 @@
 .btn {
   --btn-border: var(--btn-bg);
   --fontsize: 16px;
-  font-weight: 300;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
   --btn-shadow: none;
-  --btn-p: 1.25rem;
+  padding: 16px 20px;
+  border-radius: 100px;
 }
 
 .btn-sm {
@@ -53,13 +55,13 @@
 }
 
 @layer components {
-  .text-display-lg,
-  .text-display,
-  .text-stat,
-  .text-h3,
-  .text-h4,
-  .text-h5,
-  .text-nav {
+  [class*="text-display-lg"],
+  [class*="text-display"],
+  [class*="text-stat"],
+  [class*="text-h3"],
+  [class*="text-h4"],
+  [class*="text-h5"],
+  [class*="text-nav"] {
     font-family: var(--font-sans);
   }
 }
@@ -71,38 +73,37 @@
   /* Display Large — 80px — Inter 800 — hero headings */
   --text-display-lg: 80px;
 
-  /* Display — 64px/1.05 — Inter 800 — hero headings */
+  /* Display — 64px/67.2px — Inter 800 — hero headings */
   --text-display: 64px;
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: 0.03em;
+  --text-display--line-height: 67.2px;
 
-  /* Stat — 120px/1 — Inter 800 — stats counter */
+  /* Stat — 120px/120px — Inter 800 — stats counter */
   --text-stat: 120px;
-  --text-stat--line-height: 1;
+  --text-stat--line-height: 120px;
 
-  /* H3 — 40px/1.1 — Inter 500 — section headings */
+  /* H3 — 40px/44px — Inter 500 — section headings */
   --text-h3: 40px;
-  --text-h3--line-height: 1.1;
+  --text-h3--line-height: 44px;
 
-  /* H4 — 32px/1 — Inter 800 — sub-headings */
+  /* H4 — 32px/32px — Inter 800 — sub-headings */
   --text-h4: 32px;
-  --text-h4--line-height: 1;
+  --text-h4--line-height: 32px;
 
-  /* H5 — 24px/1 — Inter 500 — card titles, FAQ questions */
+  /* H5 — 24px/24px — Inter 500 — card titles, FAQ questions */
   --text-h5: 24px;
-  --text-h5--line-height: 1;
+  --text-h5--line-height: 24px;
 
-  /* Body Large — 20px/1.25 — Work Sans 500 */
+  /* Body Large — 20px/25px — Work Sans 500 */
   --text-body-lg: 20px;
-  --text-body-lg--line-height: 1.25;
+  --text-body-lg--line-height: 25px;
 
-  /* Body — 16px/1.25 — Work Sans 400 — paragraphs, buttons */
+  /* Body — 16px/20px — Work Sans 400 — paragraphs, buttons */
   --text-body: 16px;
-  --text-body--line-height: 1.25;
+  --text-body--line-height: 20px;
 
-  /* Navigation — 14px/1 — Inter 500 — nav links */
+  /* Navigation — 16px/16px — Inter 500 — nav links */
   --text-nav: 16px;
-  --text-nav--line-height: 1;
+  --text-nav--line-height: 16px;
 
   /* Colors */
   --color-ink: #0d0d0d;

@@ -67,7 +67,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
         <div className="flex flex-col justify-between gap-2 sm:flex-row">
           <div className="flex max-w-124 flex-col gap-1 text-white">
             <p className="text-body-lg font-medium">{landingPage2?.description?.description}</p>
-            <p className="text-h5 leading-7">{landingPage2?.description2?.description2}</p>
+            <p className="text-h5">{landingPage2?.description2?.description2}</p>
           </div>
           {landingPage2?.photo?.gatsbyImageData && (
             <GatsbyImage
@@ -88,7 +88,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
           )}
           <div className="flex max-w-124 flex-col gap-1 text-white">
             <p className="text-body-lg font-medium">{landingPage3?.description?.description}</p>
-            <p className="text-h5 leading-7">{landingPage3?.description2?.description2}</p>
+            <p className="text-h5">{landingPage3?.description2?.description2}</p>
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@ const IndexPage: React.FC<PageProps<Queries.LandingPageQueryQuery>> = ({ data })
 
       {/* Large Image */}
       <div data-header-theme="light" className="px-12 pt-10 pb-20">
-        <div className="flex h-[652px] w-full items-center justify-center overflow-hidden bg-gray-300">
+        <div className="flex h-163 w-full items-center justify-center overflow-hidden bg-gray-300">
           <span className="text-lg text-black/30">Featured Image</span>
         </div>
       </div>

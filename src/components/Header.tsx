@@ -119,12 +119,12 @@ const Header = () => {
             })}
           </ul>
         </div>
-        <Link to="/" className="link shrink-0">
+        <Link to="/" className="link mt-1 shrink-0">
           <img src={isDark ? logoWhite : logoBlack} alt="Exceed" className="w-32 sm:w-48" />
         </Link>
       </div>
       <div className="navbar-center relative z-1 hidden justify-center gap-8 sm:block">
-        <ul className="menu menu-horizontal gap-10 px-1">
+        <ul className="menu menu-horizontal gap-8">
           {header?.links?.map((link) => {
             if (link && "links" in link && link.links) {
               return (
@@ -152,8 +152,8 @@ const Header = () => {
             if (link && "url" in link) {
               return (
                 <li key={link.id}>
-                  <Link className="link link-hover text-nav" to={link.url ?? ""}>
-                    {link.title?.toUpperCase()}
+                  <Link className="link link-hover text-nav uppercase" to={link.url ?? ""}>
+                    {link.title}
                   </Link>
                 </li>
               );
@@ -169,7 +169,7 @@ const Header = () => {
               key={button.id}
               to={button.url ?? ""}
               className={
-                "btn btn-primary rounded-full" +
+                "btn btn-primary" +
                 (isDark
                   ? " border-white bg-transparent text-white"
                   : " border-base-200 btn-primary")

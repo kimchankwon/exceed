@@ -56,8 +56,8 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
   return (
     <div className="bg-cream">
       {/* Hero Headline */}
-      <div data-header-theme="light" className="px-12 pt-54 pb-21">
-        <h1 className="sm:text-display-lg max-w-5xl leading-none font-extrabold uppercase">
+      <div data-header-theme="light" className="px-12 pt-55 pb-21">
+        <h1 className="sm:text-display-lg max-w-6xl leading-none font-extrabold tracking-[-0.02em] uppercase">
           {aboutTitle?.description?.description}
         </h1>
       </div>
@@ -97,15 +97,13 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
 
       {/* Our Story */}
       <div data-header-theme="light" className="bg-grey px-12 pt-36 pb-40">
-        <h1 className="sm:text-display text-h3 mb-16 w-xs leading-none font-extrabold uppercase">
+        <h1 className="sm:text-display text-h3 mb-16 w-xs font-extrabold uppercase">
           {about1?.title}
         </h1>
         {/* Row 1: text left, image right */}
         <div className="mb-20 grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div />
-          <p className="text-h5 max-w-2xl pb-12 leading-7 tracking-wider">
-            {about1?.description?.description}
-          </p>
+          <p className="text-h5 max-w-2xl pb-12">{about1?.description?.description}</p>
           <div />
           {about1?.photo?.gatsbyImageData && (
             <GatsbyImage
@@ -124,13 +122,13 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
               className="max-h-184.75 max-w-127.75"
             />
           )}
-          <div className="text-body-lg max-w-116.5">
-            <p className="mb-4 leading-6.5 tracking-wider">{about2?.description?.description}</p>
-            <p className="leading-6.5 tracking-wider">{about2?.description2?.description2}</p>
+          <div className="max-w-116.5">
+            <p className="text-body-lg mb-4">{about2?.description?.description}</p>
+            <p className="text-body-lg">{about2?.description2?.description2}</p>
           </div>
         </div>
         {/* Large centered quote */}
-        <h1 className="sm:text-display text-h3 leading-tighter mx-auto max-w-7xl text-center font-extrabold uppercase">
+        <h1 className="sm:text-display text-h3 mx-auto max-w-7xl text-center font-extrabold uppercase">
           {about3?.description?.description}
         </h1>
         <div className="flex justify-center">
@@ -170,20 +168,16 @@ const AboutPage: React.FC<PageProps<Queries.AboutPageQueryQuery>> = ({ data }) =
                     className="peer"
                   />
                   <div className="collapse-title text-ink/25 peer-checked:text-ink p-0 pb-4 transition-all duration-200">
-                    <p className="text-h5 [.peer:checked~*_&]:text-h4 pb-6 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:pb-8">
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 pb-6 font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:pb-8">
                       0{i + 1}.
                     </p>
-                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-2 leading-none font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-56">
+                    <p className="text-h5 [.peer:checked~*_&]:text-h4 max-w-42 pb-2 font-extrabold uppercase transition-all duration-200 [.peer:checked~*_&]:max-w-56">
                       {value?.title}
                     </p>
                   </div>
                   <div className="collapse-content max-w-md px-0">
-                    <p className="text-body-lg pb-4 leading-6 tracking-wider">
-                      {value?.description?.description}
-                    </p>
-                    <p className="text-body-lg leading-6 tracking-wider">
-                      {value?.description2?.description2}
-                    </p>
+                    <p className="text-body-lg pb-4">{value?.description?.description}</p>
+                    <p className="text-body-lg">{value?.description2?.description2}</p>
                   </div>
                 </div>
               ) : null
